@@ -9,15 +9,24 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Disdukcapil</title>
+    <title>Inconis</title>
 
     <!-- Bootstrap Core CSS -->
   <script> function base_url() { return "<?php echo base_url();?>" }; </script>
-  <script src="<?php echo template_dir(); ?>asset/jquery.min.js" type="text/javascript"></script>
-  <script src="<?php echo template_dir(); ?>asset/jquery.knob.min.js" type="text/javascript"></script>
-  <script src="<?php echo template_dir(); ?>asset/js/bootstrap.min.js" type="text/javascript"></script>
-  <link href="<?php echo template_dir(); ?>asset/bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="<?php echo template_dir(); ?>keen/keen-dashboards.css" />
+
+  <link href="<?php echo template_dir(); ?>css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo template_dir(); ?>font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="<?php echo template_dir(); ?>css/animate.css" rel="stylesheet">
+  <link href="<?php echo template_dir(); ?>css/style.css" rel="stylesheet">
+
+<script src="<?php echo template_dir(); ?>js/jquery-3.1.1.min.js"></script>
+<script src="<?php echo template_dir(); ?>js/bootstrap.min.js"></script>
+<script src="<?php echo template_dir(); ?>js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="<?php echo template_dir(); ?>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="<?php echo template_dir(); ?>js/inspinia.js"></script>
+<script src="<?php echo template_dir(); ?>js/plugins/pace/pace.min.js"></script>
   
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

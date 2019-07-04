@@ -36,7 +36,7 @@
                 10GB of <strong>250GB</strong> Free.
             </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
+                <strong>Copyright</strong> Inconis Nusa Jaya &copy; 2014-2017
             </div>
         </div>
 

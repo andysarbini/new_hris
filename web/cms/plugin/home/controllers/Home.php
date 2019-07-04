@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class home extends GW_Controller {
+class home extends GW_User {
 	
 	public function __construct(){
 	

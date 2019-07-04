@@ -25,6 +25,8 @@ class user extends MX_Controller {
 		$data['email'] = $this->input->post('email');
 
 		$data['password'] = $this->generate_md5($this->input->post('password'));
+		
+		
 		# no-captcha
 		/*
 		$data['captcha'] = $this->input->post('captcha');
