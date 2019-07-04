@@ -1,0 +1,7 @@
+web/cms/config/database.php
+!.ignore
+*.old
+*.backup
+web/uploads/*
+*.rar
+*.zip

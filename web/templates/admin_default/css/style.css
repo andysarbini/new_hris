@@ -1,0 +1,158 @@
+/*!
+ * Telko template style.css v2.2.0 
+ *
+ * Copyright 2014-2015 telko template style.css <dwiriantop@gmail.com>
+ * Edited w/ ST2
+ *
+ */
+
+body {
+	padding-top: 55px;
+	position: relative;
+	background-image: url(../img/bg-body.png);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: 100% 100%;
+	font-family: 'Roboto', Helvetica Neue, Helvetica, Arial, sans-serif;
+	
+}
+
+/* Login Area */
+
+body.login {
+	padding-top: 16vh;
+	background-color: #fff;
+}
+
+body.login h1 {
+	font-size: 850%;
+	font-weight: 900;
+	text-shadow: 0 2px 2px rgba(0,0,0,.25);
+}
+
+body.login h1,
+body.login p.lead {
+	color: #3f5ca9;
+}
+
+body.login h3 {
+	color: #999;
+	font-size: 116%;
+}
+
+body.login form {
+	margin-top: 50px;
+}
+
+body.login .btn-lg, body.login .btn-group-lg > .btn {
+	padding: 13px 18px;
+}
+
+body.login .login-form .fa {
+	font-size: 1.5em;
+	line-height: 1;
+	color: #999;
+}
+
+body.login .input-group-addon {
+	background-color: transparent;
+	border-color: transparent;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
+body.login .login-form .captcha {
+	position: relative;
+}
+
+body.login .login-form .captcha label > img {
+	position: absolute;
+	top: 14px;
+	left: 10px;
+}
+
+body.login .login-form .captcha > input.form-control {
+	padding-left: 115px;
+	width: 12em;
+}
+
+/*body.login .logo {
+	width: 436px;
+	height: 264px;
+	margin: 0 auto;
+	position: absolute;
+	top: 0;
+	z-index: 0;
+}*/
+
+body.login .alert .close {
+	top: 6px;
+	right: -6px;
+}
+
+body.login .logo > img {
+	margin: 0 auto;
+}
+
+/* commons */
+
+.wide {
+	/*background: url(../img/site-logo.jpg) no-repeat 50% 0;
+	padding-top: 220px;
+	padding-bottom: 30px;*/
+	min-height: 150px;
+}
+
+h1, h2, h3  {
+	letter-spacing: -0.02785em;
+}
+
+.font-weight-1x {
+	font-weight: 300;
+}
+
+.font-weight-2x {
+	font-weight: 400;
+}
+
+.font-weight-3x {
+	font-weight: 600;
+}
+
+.font-weight-4x {
+	font-weight: 900;
+}
+
+.font-2x {
+	font-size: 106%;
+}
+
+.font-3x {
+	font-size: 126%;
+}
+
+/* menu */
+
+.menu-list > li > a {
+	color: inherit;
+}
+
+.menu-list > li > a:hover,
+.menu-list > li > a:focus {
+	color: inherit;
+}
+
+
+/* extend bootstrap media queries --- */
+
+@media (min-width: 768px) and (max-width: 1024px) { }
+
+@media (min-width: 600px) and (max-width: 968px) { }
+
+@media (min-width: 600px) and (max-width: 968px) and (orientation : portrait) { }
+
+@media (min-width: 320px) and (max-width: 480px) { }
+
+/* presentation mode for HUGE screen display */
+
+@media (min-width: 1920px) { }

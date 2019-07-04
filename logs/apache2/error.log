@@ -1,0 +1,6 @@
+[Wed Jul 03 09:11:29.140270 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 configured -- resuming normal operations
+[Wed Jul 03 09:11:29.140331 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Wed Jul 03 09:12:34.554966 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Wed Jul 03 09:12:37.311556 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 configured -- resuming normal operations
+[Wed Jul 03 09:12:37.311612 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Wed Jul 03 10:20:55.333812 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down

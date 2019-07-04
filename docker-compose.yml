@@ -1,0 +1,45 @@
+version: '3'
+services:
+  php-apache:
+    #~restart: always
+    build:
+      context: ./sys/php
+    ports:
+      - 80:80
+    volumes:
+      - ./web:/var/www/html
+      - ./logs/apache2:/var/log/apache2
+    # links:
+    #   - mariadb
+
+  # mariadb:
+  #   image: mariadb
+  #   #~restart: always
+  #   volumes:
+  #     - ./db/mariadb:/var/lib/mysql
+  #     - ./sys/logs/mariadb:/var/log/mysql
+  #   #~ uncomment 2 ports to expose database to lan
+  #   #~ports:
+  #     #~- 3306:3306
+  #   environment:
+  #     TZ: "Asia/Jakarta"
+  #     MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+  #     MYSQL_ROOT_PASSWORD: "rootpwd"
+  #     MYSQL_USER: 'userdb'
+  #     MYSQL_PASSWORD: 'passdb'
+  #     MYSQL_DATABASE: 'toko_diandra'
+  
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     - PMA_ARBITRARY=1
+  #     - PMA_HOST=mariadb
+  #   #~restart: no
+  #   ports:
+  #     - "2000:80"
+  #   volumes:
+  #     - /sessions
+  #   links:
+  #     - mariadb
+
+# wp g3n1k/123654aaA.
