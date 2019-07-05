@@ -5,3 +5,4 @@ web/cms/config/database.php
 web/uploads/*
 *.rar
 *.zip
+logs/*
