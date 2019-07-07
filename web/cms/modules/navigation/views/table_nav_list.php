@@ -28,7 +28,7 @@
 		<td class='text-center'><?php echo $t['poss'];?></td>
 		<td>
 			<div class="dropdown pull-right">
-				<a class="btn btn-xs btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-gear"></i> Config</a>
+				<a class="btn btn-xs btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-edit"></i> Config</a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="actionmenu">
 					<li><a onclick='load_form_nav_list(<?php echo $t['id'];?>,0)'>Edit</a></li>
 					<li><a onclick='load_form_nav_list(0,<?php echo $t['id'];?>)'>Add Sub Item</a></li>

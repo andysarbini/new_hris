@@ -28,7 +28,7 @@
 			<td><?php echo $t->group_name;?></td>
 			<td>
 				<div class="dropdown pull-right">
-					<a class="btn btn-xs btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-gear"></i></a>
+					<a class="btn btn-xs btn-default" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-edit"></i></a>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="actionmenu">
 						<li><a data-toggle="modal" href="#modals" class="" onclick='navlist(<?php echo $t->id.','.$t->group_id;?>);'>View</a></li>
 						<li><a class='' onclick='load_form_nav(<?php echo $t->id;?>);'>Edit</a></li>

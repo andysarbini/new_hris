@@ -72,8 +72,8 @@
 						<li><a href="<?php echo base_url();?>admin/forum/detail/1">Konten</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Galeri</li>
-						<li><a href="<?php echo base_url();?>admin/gallery">Foto & Video</a></li>
-						<li><a href="<?php echo base_url();?>admin/gallery/detail/17">Slideshow Halaman Utama</a></li>
+						<li><a href="<?php echo base_url();?>galleri/admin">Foto & Video</a></li>
+						<li><a href="<?php echo base_url();?>galleri/admin/detail/17">Slideshow Halaman Utama</a></li>
 						<li><a href="<?php echo base_url();?>admin/content">Slideshow News</a></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Karyawan</li>

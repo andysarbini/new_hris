@@ -9,7 +9,7 @@
 ?>
 
 <div class="page-header">
-	<h1>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Menu Navigasi </h1>
+	<h1>Menu Navigasi </h1>
 </div>
 
 <div class="row">

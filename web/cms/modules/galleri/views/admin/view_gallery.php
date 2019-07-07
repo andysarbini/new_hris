@@ -1,8 +1,8 @@
 <h3 class='heading'>
 	Gallery
 	<div class="pull-right">
-		<a href='<?php echo base_url().'admin/gallery/detail/1'?>'><button class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-book'></span> View Template</button></a>
-		<a href='<?php echo base_url().'admin/gallery/add'?>'><button class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-plus'></span> Add New Gallery</button></a>
+		<a href='<?php echo base_url().'galleri/admin/detail/1'?>'><button class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-book'></span> View Template</button></a>
+		<a href='<?php echo base_url().'galleri/admin/add'?>'><button class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-plus'></span> Add New Gallery</button></a>
 	</div>
 </h3>
 <p class='description'>List of galleries used by your webiste.</p>
@@ -22,8 +22,8 @@
 		<td><?php echo $d->input_name;?></td><td><?php echo $d->update_date;?></td><td><?php echo $d->update_name;?></td>
 		<td>
 			<div class='btn-group pull-right'>
-				<a class='btn btn-default btn-xs' href='<?php echo base_url().'admin/gallery/detail/'.$d->id;?>'><span class="glyphicon glyphicon-picture"> View Image</span></a>
-				<a class='btn btn-primary btn-xs' href='<?php echo base_url().'admin/gallery/edit/'.$d->id;?>'><span class="glyphicon glyphicon-edit"> Edit</span></a>
+				<a class='btn btn-default btn-xs' href='<?php echo base_url().'galleri/admin/detail/'.$d->id;?>'><span class="glyphicon glyphicon-picture"> View Image</span></a>
+				<a class='btn btn-primary btn-xs' href='<?php echo base_url().'galleri/admin/edit/'.$d->id;?>'><span class="glyphicon glyphicon-edit"> Edit</span></a>
 			</div>
 		</td>
 	</tr>

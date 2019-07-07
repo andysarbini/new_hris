@@ -1,8 +1,8 @@
 <h3 class='heading'>
 	Gallery: <strong><?php echo $gall->name;?></strong>
 	<div class="pull-right">
-		<a href='<?php echo base_url().'admin/gallery/'?>'><button class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-chevron-left'></span> All Gallery</button></a>
-		<a href='<?php echo base_url().'admin/gallery/add_edit_img/'.$gall->id?>'><button class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-plus'></span> Add New Image</button></a>
+		<a href='<?php echo base_url().'admin/gallery/'?>'><button class='btn btn-primary btn-sm'><span class='fa fa-chevron-left'></span> All Gallery</button></a>
+		<a href='<?php echo base_url().'admin/gallery/add_edit_img/'.$gall->id?>'><button class='btn btn-primary btn-sm'><span class='fa fa-plus'></span> Add New Image</button></a>
 	</div>
 </h3>
 <p class='description'>Tambah, edit, hapus galeri konten.</p>
@@ -39,8 +39,8 @@
 		<td width='50%'><?php echo $d->description;?></td>
 		<td width='8%'>
 			<div class='btn-group pull-right'>
-				<a href='<?php echo $gall_path . 'add_edit_img/'.$gall->id.'/'.$d->id;?>' class='btn btn-primary btn-xs'><span class="glyphicon glyphicon-edit"></span></a>
-				<a href='<?php echo $gall_path . 'delete_img/'.$gall->id.'/'.$d->id;?>' class='btn btn-primary btn-xs'><span class="glyphicon glyphicon-trash"></span></a>
+				<a href='<?php echo $gall_path . 'add_edit_img/'.$gall->id.'/'.$d->id;?>' class='btn btn-primary btn-xs'><span class="fa fa-edit"></span></a>
+				<a href='<?php echo $gall_path . 'delete_img/'.$gall->id.'/'.$d->id;?>' class='btn btn-primary btn-xs'><span class="fa fa-trash"></span></a>
 			</div>
 		</td>
 	</tr>

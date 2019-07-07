@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class gallery extends GW_Controller
+class galleri extends GW_Controller
 {
 	public function __construct(){
 		parent::__construct();
