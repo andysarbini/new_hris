@@ -1,7 +1,7 @@
 <?php
 class content_m extends GW_Model {
 
-	function content_m() {
+	function __construct() {
 		parent::__construct();
 	}
 	

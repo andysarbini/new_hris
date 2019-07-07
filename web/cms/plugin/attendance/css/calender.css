@@ -1,0 +1,58 @@
+.table.calendar th,
+.table.calendar td {
+    border-bottom: 0;
+}
+.table.calendar td,
+.table.calendar td:first-child {
+    background-color: #fff !important;
+    border: 8px solid #fafafa;
+    box-shadow: inset 0 0 1px #b0b0b0;
+}
+td.calendar-day {
+	height: 80px;
+	position: relative;
+}
+
+* html div.calendar-day {
+	height: 80px;
+}
+
+td.calendar-day-np {
+	background: #eee;
+	min-height: 80px;
+}
+
+* html div.calendar-day-np {
+	height: 80px;
+}
+th.calendar-day-head:last-child {
+    color: #d81b60;
+}
+th.calendar-day-head {
+    /* text-align: right; */
+}
+div.day-number {
+    color: #37474F;
+    font-size: 18px;
+	font-weight: 300;
+    float: right;
+    text-align: right;
+    margin-right: 10px;
+}
+
+td.calendar-day,td.calendar-day-np {
+    width: 120px;
+}
+
+.table.calendar td.calendar-day-np {
+    border-color: transparent;
+    background-color: transparent !important;
+}
+.calendar-event {
+    padding: 0;
+    position: absolute;
+    bottom: 9px;
+    right: 0;
+    text-align: right;
+    margin-right: 17px;
+}

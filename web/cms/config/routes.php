@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['404_override'] = '_404';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['default_controller'] = "home";
+$route['default_controller'] = "dashboard";
 $route['404_override'] = '';
 
 /* Location: ./application/config/routes.php */
@@ -69,3 +69,40 @@ $route['admin/([a-zA-Z_-]+)/(:any)']	= '$1/admin/$2';
 
 // override halaman pages -> http://localhost:8081/hmvc_rafa/pages/home
 $route['pages/(:any)']			=  'pages/index/$1';
+
+$route['unduhformulir'] 	= 'dashboard/news/98';				// show module unduhformulir
+$route['bblearning'] 		= 'dashboard/bblearning';			// module bblearning
+$route['bblearning/(:any)'] = 'dashboard/bblearning/$1';		// detail content bb learning
+$route['category/(:any)'] 	= 'dashboard/category/$1';			// lihat seluruh category content
+$route['view/(:any)'] 		= 'dashboard/view/$1';				// detail content
+$route['gallery'] 		    = 'dashboard/gallery';			    // module gallery
+$route['gallery/(:any)']    = 'dashboard/gallery_detail/$1';    // detail content gallery
+$route['birdbagi-forum'] 		= 'dashboard/forum';			// module Forum
+$route['birdbagi-forum/(:any)'] = 'dashboard/forum/$1';		    // detail content Forum
+$route['submit-posting-diskusi']= 'dashboard/submit_posting_topic_forum'; // Posting Forum
+$route['delete-topic-forum/(:num)'] = 'dashboard/delete_topic_forum/$1';  // Delete Posted Forum$route['news'] 		           = 'news/index';			    // module Artikel Berita
+$route['news'] 		           = 'dashboard/news';		        // module Artikel Berita
+$route['news/(:any)'] 		   = 'dashboard/news/$1';		    // module kategori Artikel Berita
+$route['news/(:any)/(:id)']    = 'dashboard/news/$1/$1';        // detail Artikel Berita
+
+//$route['cuti']				= 'content/view/formulir-cuti/single';
+
+$route['search']			= 'search/index';
+$route['search/(:num)']		= 'search/index/$1';
+$route['ajax_pagination_newsfeed'] = 'ajax/ajax_pagination_newsfeed';
+$route['ajax_pagination_newsfeed/(:num)'] = 'ajax/ajax_pagination_newsfeed/$1';
+$route['ajax_pagination_files/(:any)'] = 'ajax/ajax_pagination_files/$1';
+$route['ajax_pagination_files/(:any)/(:num)'] = 'ajax/ajax_pagination_files/$1/$1';
+$route['ajax_pagination_videos/(:any)'] = 'ajax/ajax_pagination_videos/$1';
+$route['ajax_pagination_videos/(:any)/(:num)'] = 'ajax/ajax_pagination_videos/$1/$1';
+$route['ajax_pagination_gallery/(:any)/(:any)'] = 'ajax/ajax_pagination_gallery/$1';
+$route['ajax_pagination_gallery/(:any)/(:any)/(:num)'] = 'ajax/ajax_pagination_gallery/$1/$1';
+
+$route['ajax_get_picture/(:num)'] = 'ajax/ajax_get_picture/$1';
+$route['ajax_pagination_forum/(:any)/(:any)/(:num)'] = 'ajax/ajax_pagination_forum_topic/$1/$1/$1';
+$route['ajax_pagination_forum/(:num)/(:any)/(:num)'] = 'ajax/ajax_pagination_forum_topic/$1/$1/$1';
+$route['ajax_pagination_mytopic/(:num)'] = 'ajax/ajax_pagination_mytopic/$1';
+
+$route['ajax_pagination_news'] = 'ajax/ajax_pagination_news';
+$route['ajax_pagination_news/(:any)'] = 'ajax/ajax_pagination_news/$1';
+$route['ajax_pagination_news/(:any)/(:num)'] = 'ajax/ajax_pagination_news/$1/$1';

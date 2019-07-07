@@ -231,5 +231,28 @@ class image { #disable this library
 		return $name_output;
 	}
 
+	function thumb($path_img, $width = 250, $height = 250){
+			
+		$ary = $this->pathnameext($path_img);
+
+		$thumb 	= $ary['path'] . '/' . $ary['name'] . $this->cfg['thumb_marker'] .'.'. $ary['ext'];
+		
+		$url	= $ary['url'] . '/' . $ary['name'] . $this->cfg['thumb_marker'] .'.'. $ary['ext'];
+		
+		if(file_exists($thumb)) return $url;
+		
+		else {
+			
+			$this->cfg['source_image'] 	= $ary['path'] . '/' . $ary['name'] .'.'. $ary['ext'];
+			
+			$this->ci->image_lib->initialize($this->cfg);
+			
+			if($this->ci->image_lib->resize()) return $url;
+				
+			else return $this->ci->image_lib->display_errors();
+		}
+		
+	}
+
 
 }

@@ -92,7 +92,7 @@
 						<label class='col-sm-2 control-label' for='feature_img'>Upload</label>
 						<div class='col-sm-4'>
 							<?php 
-							echo isset($state->feature_img) && $state->feature_img != '' ? "<div class='panel'><img src='".img_thumb('/uploads/images/'.$state->feature_img, 440, 440)."' class='img-responsive img-retina img-thumbnail'></div>":'';?>
+							echo isset($state->feature_img) && $state->feature_img != '' ? "<div class='panel'><img src='".@img_thumb('/uploads/images/'.$state->feature_img, 440, 440)."' class='img-responsive img-retina img-thumbnail'></div>":'';?>
 							<input class='' type='file' name='feature_img' id='feature_img'/>
 						</div>
 					</div>
