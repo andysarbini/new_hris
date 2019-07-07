@@ -7,3 +7,4 @@ web/uploads/*
 *.zip
 logs/*
 db/mariadb/*
+logs/*

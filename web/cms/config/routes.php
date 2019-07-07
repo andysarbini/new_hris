@@ -97,6 +97,7 @@ $route['ajax_pagination_videos/(:any)'] = 'ajax/ajax_pagination_videos/$1';
 $route['ajax_pagination_videos/(:any)/(:num)'] = 'ajax/ajax_pagination_videos/$1/$1';
 $route['ajax_pagination_gallery/(:any)/(:any)'] = 'ajax/ajax_pagination_gallery/$1';
 $route['ajax_pagination_gallery/(:any)/(:any)/(:num)'] = 'ajax/ajax_pagination_gallery/$1/$1';
+$route['ajax_pagination_gallery/(:any)/(:any)/(:any)/(:num)'] = 'ajax/ajax_pagination_gallery/$1/$1/$1';
 
 $route['ajax_get_picture/(:num)'] = 'ajax/ajax_get_picture/$1';
 $route['ajax_pagination_forum/(:any)/(:any)/(:num)'] = 'ajax/ajax_pagination_forum_topic/$1/$1/$1';
