@@ -6,3 +6,4 @@ web/uploads/*
 *.rar
 *.zip
 logs/*
+db/mariadb/*
