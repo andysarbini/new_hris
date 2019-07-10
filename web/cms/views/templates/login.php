@@ -1,32 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html>
+
+<head>
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Login Dashboard</title>
 
-    <!-- Bootstrap -->
-    <link rel='stylesheet' type='text/css' href='<?php echo template_css(); ?>/fontawesome-all.min.css'>
-    <link rel='stylesheet' type='text/css' href='<?php echo template_css(); ?>/template.css'>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
-    <script> 
+    
+	<!-- Bootstrap -->
+    <link rel='stylesheet' type='text/css' href='<?php echo template_css(); ?>/font-awesome/css/font-awesome.css'>
+    <link rel='stylesheet' type='text/css' href='<?php echo template_css(); ?>/bootstrap.min.css'>
+	<link rel='stylesheet' type='text/css' href='<?php echo template_css(); ?>/animate.css'>
+	<link rel='stylesheet' type='text/css' href='<?php echo template_css(); ?>/style.css'>
+<script> 
       var base_url = "<?php echo base_url();?>";
-	  </script>
-  </head>
-  <body class="landing">
+</script>
 
-	<mp:Contentmain />
+</head>
 
-    <script src="<?php echo template_js(); ?>/assets/jquery-3.1.0.min.js"></script>
-    <script src="<?php echo template_js(); ?>/assets/bootstrap.min.js"></script>
-  </body>
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">IN+</h1>
+
+            </div>
+            <h3>Welcome to IN+</h3>
+            <p>Perfectly designed and precisely prepared admin theme with over 50 pages with extra new web app views.
+                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+            </p>
+            <p>Login in. To see it in action.</p>
+			
+            <mp:Contentmain />
+			
+            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+	<script src="<?php echo template_js(); ?>/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo template_js(); ?>/bootstrap.min.js"></script>
+
+</body>
+
 </html>
