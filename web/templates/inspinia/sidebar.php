@@ -9,9 +9,10 @@
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
                              </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="mailbox.html">Mailbox</a></li>
+                                <li><a href="<?php echo base_url()."profile";?>">Profile</a></li>
+                                <li><a href="<?php echo base_url()."slipgaji";?>">Slip Gaji</a></li>
+                                <li><a href="<?php echo base_url()."attendance";?>">Laporan Kehadiran</a></li>
+                                <li><a href="<?php echo base_url()."cuti";?>">Izin Cuti</a></li>
                                 <li class="divider"></li>
                                 <li><a href="<?php echo base_url()."logout"?>">Logout</a></li>
                             </ul>
@@ -21,7 +22,7 @@
                         </div>
                     </li>
                     
-					
+					<!-- jagjahgg -->
 			
             <?php 
             foreach($menus as $var=>$v):
