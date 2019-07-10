@@ -22,17 +22,17 @@
                     </li>
                     
 					
-			
-            <?php 
-            foreach($menus as $var=>$v):
-            $_fa = array("fa fa-sitemap", "fa fa-sitemap", "fa fa-sitemap", "fa fa-sitemap", "fa fa-sitemap", "fa fa-sitemap");
-            ?>
-            <?php 
-            $string = $v['title']; 
-            $convert_last_url = preg_replace('/[^A-Za-z0-9\-&_]/',' ', $string);
-            $convert_last_url = str_replace(' ', '-', $convert_last_url); 
-            $convert_last_url = strtolower($convert_last_url);
-            ?>
+
+<?php 
+foreach($menus as $var=>$v):
+$_fa = array("fa fa-sitemap", "fa fa-sitemap", "fa fa-sitemap", "fa fa-sitemap", "fa fa-sitemap", "fa fa-sitemap");
+?>
+<?php 
+$string = $v['title']; 
+$convert_last_url = preg_replace('/[^A-Za-z0-9\-&_]/',' ', $string);
+$convert_last_url = str_replace(' ', '-', $convert_last_url); 
+$convert_last_url = strtolower($convert_last_url);
+?>
             <?php ?>
             <li class="special_link">
             

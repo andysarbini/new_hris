@@ -51,5 +51,19 @@ class Attendance extends GW_User {
 		$this->masterpage->show( );
 	}
 
+	function masuk(){ // in or out
+		
+		$data['include_script'] = inc_script(
+			array(				
+				"cms/plugin/attendance/masuk_keluar.js",
+			)
+		);
+		
+		$this->masterpage->addContentPage('dashboard/breadcrumb', 'breadcrumb', $data);
+	
+		$this->masterpage->addContentPage('button_attendance', 'contentmain', $data);
+
+		$this->masterpage->show( );
+	}
 	
 }

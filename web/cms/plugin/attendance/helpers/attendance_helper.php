@@ -37,4 +37,28 @@
 		
 		return $_t.$_s;
 	}
+	// return current time to
+	function get_now_time(){
+		
+		return explode(' ', date('Y-m-d H:i:s'));
+	}
+	/*
+	_var = variable yg di berikan user
+	_off = lang / lot office 
+	_r = kisaran nilai yang di bolehkan
 
+	_off = 6.832901
+	_var = 6.832900
+	_r = 0.000001
+	accept if _var >= _off - _r && _var <= _off + _r
+	*/
+	function accept_lat_lon($_var, $_off, $_r = 0){
+
+		$_down 	= (float)$_off - (float)$_r;
+
+		$_up	= (float)$_off + (float)$_r;
+
+		if($_var >= $_down && $_var <= $_up) return true;
+
+		else return false;
+	}
