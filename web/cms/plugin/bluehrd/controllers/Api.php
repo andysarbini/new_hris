@@ -15,7 +15,7 @@ class Api extends GW_User
 		
 		$this->load->model("bluehrd_user_m");
 		
-		$data['user'] $this->bluehrd_user_m->get_user(get_session('user_id'));
+		$data['user'] = $this->bluehrd_user_m->get_user(get_session('user_id'));
 		
 		$this->load->view("header_nav", $data);
 	}
