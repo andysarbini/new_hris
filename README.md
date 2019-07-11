@@ -15,6 +15,12 @@ http://url/foo/template/nama_file_tanpa_ext_php
 http://localhost/foo/template/form_data_karyawan
 ````
 
+## New Branch
+
+- git checkout nama_branch
+- git branch **posisi lokasi branch**
+- git push origin nama_branch
+
 ## Contributing
 
 Thank you for considering contributing to the HRIS INCONIS! The contribution guide can be found in the Application documentation.
