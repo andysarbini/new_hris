@@ -6,9 +6,9 @@
 	<table class="table" id="data-table">
 		<thead>
 			<tr>
-				<th>Kategori <span class="fas fa-sort pull-right"></span> </th>
-				<th>Judul <span class="fas fa-sort pull-right"></span> </th>
-				<th>Keterangan <span class="fas fa-sort pull-right"></span> </th>
+				<th>Kategori <span class="fa fa-sort pull-right"></span> </th>
+				<th>Judul <span class="fa fa-sort pull-right"></span> </th>
+				<th>Keterangan <span class="fa fa-sort pull-right"></span> </th>
 				<th class="no-sort">Berkas</th>
 				<!-- <th width="26px" class="no-sort"><span class="sr-only">Actions</span></th> -->
 			</tr>
@@ -19,7 +19,7 @@
 				<td><?php echo $v->category ? $str_category[$v->category]:'';?></td>
 				<td><?php echo $v->title;?></td>
 				<td><?php echo $v->description;?></td>
-				<td><?php echo $v->file ? "<a href='".base_url().'uploads/info/'.$v->file."' class='btn btn-default btn-xs'><span class='fas fa-download fa-fw' aria-hidden='true'></span> Download</a>":"";?></td>
+				<td><?php echo $v->file ? "<a href='".base_url().'uploads/info/'.$v->file."' class='btn btn-default btn-xs'><span class='fa fa-download fa-fw' aria-hidden='true'></span> Download</a>":"";?></td>
 				<!-- <td>
 					<div class="dropdown pull-right">
 						<a class="btn btn-xs" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fas fa-cog fa-lg"></i></a>

@@ -86,6 +86,8 @@ class Api extends GW_User {
 				$_ = array('status'=>'success', 'message'=>'absensi masuk');
 			
 			}
+
+			else $_ = array('status'=>'error', 'message'=>'posisi anda tidak dekat kantor');
 		}
 
 		echo json_encode($_);
@@ -109,7 +111,7 @@ class Api extends GW_User {
 
 		$_a = $this->att_m->__select('mdl_user_office', 'office_id', array('usr_id'=>$this->usr_id), false);
 		
-		$_off_id = jsond_decode($_a->office_id, true);
+		$_off_id = json_decode($_a->office_id, true);
 
 		foreach($_off_id as $_id){
 

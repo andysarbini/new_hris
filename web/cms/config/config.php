@@ -531,6 +531,7 @@ $config['proxy_ips'] = '';
 /* Location: ./application/config/config.php */
 
 $config['template']         = 'inspinia';
+#$config['template']         = 'bluehrd';
 $config['admin_template'] 	= 'admin_default';
 
 

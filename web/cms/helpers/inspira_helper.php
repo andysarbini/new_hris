@@ -50,7 +50,7 @@ if(! function_exists('tgl')){
 
 	function tgl($_tgl, $_mode=1){
 
-		$_amode = array(1=>"d F Y", 2=>"d F Y G:i:s");
+		$_amode = array(1=>"d F Y", 2=>"d F Y G:i:s", 3=>"Y-m-d H:i:s");
 
 		return date ($_amode[$_mode], strtotime ($_tgl));
 	}
@@ -568,23 +568,47 @@ function tgl_ml($tgl){
 }
 
 //tambahan kerimit
-    function execute_curl_post($url,$data)
-    {
-        $data_string = json_encode($data);                                                                                   
-        $ch = curl_init($url);                                                                      
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');                                                                     
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('cache-control: no-cache', 'Content-Type: application/json; charset=utf-8','Content-Length: ' . strlen($data_string), 'postman-token: b58902b0-d09d-8116-21fe-fdee15bf9e42' ));                                                                                                                   
-        $result = curl_exec($ch);            
-        return $result;
-    }
+function execute_curl_post($url,$data)
+{
+	$data_string = json_encode($data);                                                                                   
+	$ch = curl_init($url);                                                                      
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');                                                                     
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);                                                                  
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                      
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('cache-control: no-cache', 'Content-Type: application/json; charset=utf-8','Content-Length: ' . strlen($data_string), 'postman-token: b58902b0-d09d-8116-21fe-fdee15bf9e42' ));                                                                                                                   
+	$result = curl_exec($ch);            
+	return $result;
+}
 
-    function execute_curl_get($url)
-    {
-        $ch = curl_init($url);                                                                      
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');                                                                     
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                                  
-        $result = curl_exec($ch);            
-        return $result;
-    }
+function execute_curl_get($url)
+{
+	$ch = curl_init($url);                                                                      
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');                                                                     
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);                                                                                  
+	$result = curl_exec($ch);            
+	return $result;
+}
+/**
+ * mengambil value dari table mdl_options
+ * _opt value dari table column OPT
+ * _slc jika key nya tepat, dia akan mengeluarkan value itu saja
+ * 		jika slc false, dia akan mengeluarkan seluruh value
+ * 		
+ * return string
+ */
+function mdl_opt($_opt, $_slc=false){
+	
+	$ci =& get_instance();
+	
+	$ci->load->model('foo/foo_m');
+	
+	$_ = $ci->foo_m->__select('mdl_options', 'OPT_VAL val', ['OPT'=>$_opt], false);
+
+	if($_slc){
+	
+		$_j = json_decode($_->val, true);
+	
+		return $_j[$_slc];
+
+	} else return $_->val;
+}

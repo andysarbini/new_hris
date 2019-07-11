@@ -9,24 +9,17 @@ class foo extends GW_Controller {
 	
 	public function index($page = 1){
 		
-		$param = array(
-				'order_by'=>array('tgl'=>'desc'),
-				//'limit'=>",3",
-				'limit'=>"3,".(3*($page-1)),
-				'where'=>array('cat_uri'=>'news-article')
-		);
+		echo "hello world";
+	}
+
+	function template($_path = false){
+
+		$_path = $_path ? $_path : '_example';
 		
-		$data['news'] = Modules::run('content/api/getListContent', $param);
-		
-		echo Modules::run('content/api');
-		
-		dump($data['news'] ,'data content');
-		
-		$this->masterpage->addContentPage('by_pages', 'contentmain', $data);
+		$data['title'] = 'your templating test';
+
+		$this->masterpage->addContentPage($_path, 'contentmain', $data);
 	
 		$this->masterpage->show( );
 	}
-	
-	
-	
 }
