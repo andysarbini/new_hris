@@ -11,9 +11,11 @@ buat sebuah file baru di ````web/cms/modules/foo/views/````
 
 ex: **form_data_karyawan.php**
 
-lalu buka browser dengan url<br> 
-http://url/foo/template/nama_file_tanpa_ext_php
+lalu buka browser dengan url 
+
 ````
+http://url/foo/template/nama_file_tanpa_ext_php
+
 http://localhost/foo/template/form_data_karyawan
 ````
 
