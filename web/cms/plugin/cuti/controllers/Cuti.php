@@ -29,6 +29,7 @@ class Cuti extends GW_User {
 				"includes/datepicker/locales/bootstrap-datepicker.id.js",
 				
 				"cms/plugin/cuti/js/cuti.js",
+
 			)
 		);
 

@@ -17,7 +17,8 @@
 	
 	<link href="<?php echo template_dir(); ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo template_dir(); ?>css/font-awesome/css/font-awesome.css" rel="stylesheet">
-
+    <link href="<?php echo template_dir(); ?>css/iCheck/custom.css" rel="stylesheet">
+    
     <link href="<?php echo template_dir(); ?>css/animate.css" rel="stylesheet">
     <link href="<?php echo template_dir(); ?>css/style.css" rel="stylesheet">
 
@@ -30,6 +31,10 @@
     <!-- Gritter -->
 	<link href="<?php echo template_dir(); ?>js/assets/gritter/jquery.gritter.css" rel="stylesheet">
     <script> function base_url() { return "<?php echo base_url();?>" }; </script>
+
+    <!-- <link href="<?php echo template_dir(); ?>css/fullcalendar/fullcalendar.css" rel="stylesheet"> -->
+    <!-- <link href="<?php echo template_dir(); ?>css/fullcalendar/fullcalendar.print.css" rel="stylesheet"> -->
+
 	
 
 </head>
@@ -122,10 +127,13 @@
         </div>
     </div>
     <!-- Mainly scripts -->
+    <!-- <script src="<?php echo template_js(); ?>/plugins/fullcalendar/moment.min.js"></script> -->
     <script src="<?php echo template_js(); ?>/jquery-3.1.1.min.js"></script>
     <script src="<?php echo template_js(); ?>/bootstrap.min.js"></script>
     <script src="<?php echo template_js(); ?>/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?php echo template_js(); ?>/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+     <!-- Full Calendar -->
+    <!-- <script src="<?php echo template_js(); ?>/plugins/fullcalendar/fullcalendar.min.js"></script> -->
 
     <!-- Peity -->
     <script src="<?php echo template_js(); ?>/plugins/peity/jquery.peity.min.js"></script>
@@ -135,11 +143,17 @@
     <script src="<?php echo template_js(); ?>/plugins/pace/pace.min.js"></script>
     <!-- jQuery UI -->
     <script src="<?php echo template_js(); ?>/plugins/jquery-ui/jquery-ui.min.js"></script>
+
     <!-- Toastr -->
     <script src="<?php echo template_js(); ?>/plugins/toastr/toastr.min.js"></script>
+    <!-- iCheck -->
+    <script src="<?php echo template_js(); ?>/plugins/iCheck/icheck.min.js"></script>
 	<!-- the cms -->
     <?php echo @if_empty($include_script,''); ?>
     <script src="<?php echo base_url()."cms/plugin/notification/js/num.js"; ?>"></script>
+
+
+
 	
 
 </body>
