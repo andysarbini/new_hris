@@ -18,6 +18,7 @@ http://localhost/foo/template/form_data_karyawan
 ## Contributing
 
 Thank you for considering contributing to the HRIS INCONIS! The contribution guide can be found in the Application documentation.
+Team Smartelco
 
 ## License
 
