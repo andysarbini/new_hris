@@ -1,3 +1,5 @@
+<p align="center"><img src="https://www.inconis.com/sites/all/themes/inconis/logo.png"></p><p align="center">
+
 ## How To Use
 
 - git clone https://github.com/g3n1k/new_hris.git
