@@ -147,7 +147,7 @@
     <!-- Toastr -->
     <script src="<?php echo template_js(); ?>/plugins/toastr/toastr.min.js"></script>
     <!-- iCheck -->
-    <script src="<?php echo template_js(); ?>/plugins/iCheck/icheck.min.js"></script>
+    <!-- <script src="<?php echo template_js(); ?>/plugins/iCheck/icheck.min.js"></script> -->
 	<!-- the cms -->
     <?php echo @if_empty($include_script,''); ?>
     <script src="<?php echo base_url()."cms/plugin/notification/js/num.js"; ?>"></script>
