@@ -17,11 +17,10 @@
 	
 	<link href="<?php echo template_dir(); ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo template_dir(); ?>css/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="<?php echo template_dir(); ?>css/iCheck/custom.css" rel="stylesheet">
+    <!-- <link href="<?php echo template_dir(); ?>css/iCheck/custom.css" rel="stylesheet"> -->
     
     <link href="<?php echo template_dir(); ?>css/animate.css" rel="stylesheet">
     <link href="<?php echo template_dir(); ?>css/style.css" rel="stylesheet">
-
 
 
     <!-- Toastr style -->

@@ -6,23 +6,20 @@
 - Change or Add Connections File in Database.php
 - Running this Apps On your Browsers
 
-## cara mengetest template
+## Percobaan Membuat File Content
 buat sebuah file baru di ````web/cms/modules/foo/views/````  
 
-ex: **form_data_karyawan.php**
-
-lalu buka browser dengan url 
-
 ````
-http://url/foo/template/nama_file_tanpa_ext_php
-
-http://localhost/foo/template/form_data_karyawan
+foo/template/form_office
+foo/template/data_karyawan
+foo/template/cpass
+foo/template/form_data_persh
 ````
 
 ## New Branch
 
 - git checkout nama_branch
-- git branch (menampilkan ***posisi lokasi branch***)
+- git branch ( menampilkan ***posisi lokasi branch*** )
 - git push origin nama_branch
 
 ## Contributing
