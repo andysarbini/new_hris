@@ -119,10 +119,10 @@
     </div>           
     <div class="footer">
         <div class="pull-right">
-            10GB of <strong>250GB</strong> Free.
+            HRIS APPLICATION <strong>INCONIS NUSA JAYA</strong>.
         </div>
         <div>
-            <strong>Copyright</strong> Smartelco &copy; 2014-2019
+            <strong>Copyright</strong> PT Smartelco Solusi Teknologi &copy; 2014-2019
         </div>
     </div>
     <!-- Mainly scripts -->
