@@ -83,18 +83,22 @@ class GW_Model extends CI_Model {
 	 * @param array $_where
 	 * @param boolean $_result true return data result else data row 
 	 */
-	public function __select( $_table = false, $_select = '*', $_where = array(), $_result = true , $debug = false){
+	public function __select( $_table = false, $_select = '*', $_where = array(), $_result = true ){
 
 		$this->db->select($_select);
 
 		$this->db->from($_table);
 
-		if ( count($_where) ) foreach ($_where as $var=>$val)	$this->db->where($var, $val);
+		// jika where adalah array
+		if (is_array($_where) && @count($_where)  ) foreach ($_where as $var=>$val)	$this->db->where($var, $val);
 
+		// jika where adalah string
+		else $this->db->where($_where);
+		
 		$query  = $this->db->get();
 
-		if($debug) echo $this->db->last_query()."\r\r";
-
+		debug($this->db->last_query());
+		
 		//return $_result ? $query->result() : $query->row();
 
 		if($_result == true) return $query->result();

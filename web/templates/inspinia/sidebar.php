@@ -1,5 +1,16 @@
 <?php 
-$_fa = array("fa fa-diamond", "fa fa-pie-chart", "fa fa-picture-o", "fa fa-star", "fa fa-database", "fa fa-sitemap","fa fa-pie-chart");
+$_fa = array(
+		"fa fa-calendar",
+		"fa fa-money",
+		"fa fa-rocket",
+		"fa fa-id-badge", 
+		"fa fa-pie-chart", 
+		"fa fa-picture-o", 
+		"fa fa-star", 
+		"fa fa-database", 
+		"fa fa-sitemap",
+		"fa fa-pie-chart"
+	);
 $_c = 0;
 foreach($menus as $var=>$v):
 	if($_c >= count($_fa)) $_c = 0;

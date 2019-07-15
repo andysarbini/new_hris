@@ -37,10 +37,17 @@
 		
 		return $_t.$_s;
 	}
-	// return current time to
-	function get_now_time(){
+	/** 
+	 * untuk lokasi kantor yg berada di zona waktu berbeda
+	 * return current time with gmt
+	 * */ 
+	function get_now_time($_gmt = 7){
 		
-		return explode(' ', date('Y-m-d H:i:s'));
+		$_gmt = time() + 60 * 60 * $_gmt; 
+		
+		$_ofc_time = gmdate('Y-m-d H:i:s', $_gmt);
+
+		return explode(' ', $_ofc_time);
 	}
 	/*
 	_var = variable yg di berikan user
@@ -53,11 +60,15 @@
 	accept if _var >= _off - _r && _var <= _off + _r
 	*/
 	function accept_lat_lon($_var, $_off, $_r = 0){
-
+		
+		debug($_var, '$_var');
+		debug($_off, '$_off');
+		debug($_r, '$_r');
 		$_down 	= (float)$_off - (float)$_r;
-
+		debug($_down, '$_down');
 		$_up	= (float)$_off + (float)$_r;
-
+		debug($_up, '$_up');
+		
 		if($_var >= $_down && $_var <= $_up) return true;
 
 		else return false;
