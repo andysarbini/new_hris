@@ -19,6 +19,10 @@ class Attendance extends GW_User {
 		$data['include_script'] = inc_script(
 			array(				
 				"cms/plugin/attendance/css/calender.css",
+				"templates/inspinia/js/plugins/fullcalendar/moment.min.js",
+				"templates/inspinia/js/plugins/fullcalendar/fullcalendar.min.js",
+				"templates/inspinia/css/fullcalendar/fullcalendar.print.css",
+				"templates/inspinia/css/fullcalendar/fullcalendar.css",
 			)
 		);
 		
