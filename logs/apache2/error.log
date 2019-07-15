@@ -102,3 +102,64 @@
 [Wed Jul 10 06:46:34.670939 2019] [core:crit] [pid 26] (13)Permission denied: [client 172.22.0.1:42780] AH00529: /var/www/html/templates/inspinia/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/var/www/html/templates/inspinia/' is executable, referer: http://localhost/login
 [Wed Jul 10 06:46:34.674994 2019] [core:crit] [pid 26] (13)Permission denied: [client 172.22.0.1:42780] AH00529: /var/www/html/templates/inspinia/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/var/www/html/templates/inspinia/' is executable, referer: http://localhost/login
 [Wed Jul 10 06:46:34.697504 2019] [core:crit] [pid 26] (13)Permission denied: [client 172.22.0.1:42780] AH00529: /var/www/html/templates/inspinia/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/var/www/html/templates/inspinia/' is executable, referer: http://localhost/login
+[Wed Jul 10 14:01:05.413241 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Wed Jul 10 15:56:23.083398 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 configured -- resuming normal operations
+[Wed Jul 10 15:56:23.084134 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Thu Jul 11 03:41:40.568896 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Thu Jul 11 07:12:16.767807 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 configured -- resuming normal operations
+[Thu Jul 11 07:12:16.768589 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Thu Jul 11 10:11:33.489600 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Fri Jul 12 07:07:15.184644 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 configured -- resuming normal operations
+[Fri Jul 12 07:07:15.185395 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Jul 12 09:48:45.577533 2019] [autoindex:error] [pid 43] [client 192.168.10.1:39795] AH01276: Cannot serve directory /var/www/html/geo/: No matching DirectoryIndex (index.php,index.html) found, and server-generated directory index forbidden by Options directive
+[Fri Jul 12 15:14:59.326310 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Fri Jul 12 15:18:58.323027 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 configured -- resuming normal operations
+[Fri Jul 12 15:18:58.337130 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Jul 12 15:24:29.595941 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Fri Jul 12 15:24:44.167536 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 configured -- resuming normal operations
+[Fri Jul 12 15:24:44.167615 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Jul 12 15:37:30.424372 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 configured -- resuming normal operations
+[Fri Jul 12 15:37:30.425104 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Jul 12 17:33:20.552049 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Fri Jul 12 17:55:50.798982 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Jul 12 17:55:50.799072 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Jul 12 17:55:50.828418 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Jul 12 17:55:50.828466 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Jul 12 17:55:50.831418 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 OpenSSL/1.0.2l configured -- resuming normal operations
+[Fri Jul 12 17:55:50.831461 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Jul 12 18:00:43.780326 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Fri Jul 12 18:00:52.036482 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Jul 12 18:00:52.036571 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Jul 12 18:00:52.074314 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Jul 12 18:00:52.074349 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Jul 12 18:00:52.076638 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 OpenSSL/1.0.2l configured -- resuming normal operations
+[Fri Jul 12 18:00:52.076679 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Jul 12 18:03:23.326024 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Fri Jul 12 18:05:07.888156 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Jul 12 18:05:07.888267 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Jul 12 18:05:07.922428 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Jul 12 18:05:07.922464 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Jul 12 18:05:07.924898 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 OpenSSL/1.0.2l configured -- resuming normal operations
+[Fri Jul 12 18:05:07.924936 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Jul 12 18:07:58.625878 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Fri Jul 12 18:08:15.762804 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Jul 12 18:08:15.762889 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Jul 12 18:08:15.793091 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Jul 12 18:08:15.793124 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Fri Jul 12 18:08:15.795336 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 OpenSSL/1.0.2l configured -- resuming normal operations
+[Fri Jul 12 18:08:15.795374 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Fri Jul 12 21:42:37.931406 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Sat Jul 13 09:19:17.350256 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Jul 13 09:19:17.352270 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Jul 13 09:19:17.419054 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Sat Jul 13 09:19:17.419085 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Jul 13 09:19:17.420880 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 OpenSSL/1.0.2l configured -- resuming normal operations
+[Sat Jul 13 09:19:17.420905 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Sun Jul 14 19:36:36.558538 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Mon Jul 15 01:50:20.040828 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jul 15 01:50:20.043001 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jul 15 01:50:20.113665 2019] [ssl:warn] [pid 1] AH01906: localhost:443:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jul 15 01:50:20.113716 2019] [ssl:warn] [pid 1] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Mon Jul 15 01:50:20.117230 2019] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.2.11 OpenSSL/1.0.2l configured -- resuming normal operations
+[Mon Jul 15 01:50:20.117287 2019] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Mon Jul 15 15:54:49.365073 2019] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down

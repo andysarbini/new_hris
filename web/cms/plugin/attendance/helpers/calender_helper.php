@@ -107,4 +107,121 @@ function build_html_calendar($year, $month, $events = null) {
   // All done, return result
   return $calendar;
 }
-?>
+
+function att_btn($_att_id = ''){
+
+	return '<a class="btn btn-white" href="'.base_url().'attendance/att/'.$_att_id.'">'.($_att_id ? 'Keluar' : 'Masuk').'</a>';
+}
+
+function build_html_calendar_vertical($year, $month, $events = null) {
+
+	$css_cal = 'table table-striped';
+	$css_cal_row = '';
+	$css_cal_day_head = 'calendar-day-head';
+	$css_cal_day = 'calendar-day';
+	$css_cal_day_number = 'day-number';
+	$css_cal_day_blank = 'calendar-day-np';
+	$css_cal_day_event = 'calendar-day-event';
+	$css_cal_event = 'calendar-event';
+
+	// headings
+	
+	$headings = ['Tgl', 'Hari', 'In', 'Out'];
+	$days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu' ];
+
+	// draw table
+	$calendar =
+		"<table class='{$css_cal}'>" .
+		"<thead>".
+		"<tr class='{$css_cal_row}'>" .
+		"<th class='{$css_cal_day_head}'>" .
+		implode("</th><th class='{$css_cal_day_head}'>", $headings) .
+		"</th>" .
+		"</tr>".
+		"</thead>";
+	
+	$calendar .= "<tbody>";
+	
+	$running_day = date('N', mktime(0, 0, 0, $month, 1, $year));
+	$days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
+
+	$_today = date('Y-m-d');
+	$_yesterday = date("Y-m-d", strtotime( '-1 days' ) );
+
+	for ($day = 1; $day <= $days_in_month; $day++) {
+
+		$calendar .= "<tr class='{$css_cal_row}'>";
+		$cur_date = date('Y-m-d', mktime(0, 0, 0, $month, $day, $year));
+		$calendar .= "<td>" . $day . "</td>";
+		$calendar .= "<td>" . $days[date('w', strtotime($year.'-'.$month.'-'.$day))] . "</td>";
+		
+		// if time
+		$_time_in  = isset($events[$cur_date]['time_in']) ? $events[$cur_date]['time_in'] : '';
+		
+		$_time_out = isset($events[$cur_date]['time_out']) ? $events[$cur_date]['time_out'] : '';
+
+		// att button
+		if($cur_date != $_today && $cur_date != $_yesterday ){
+		
+			$calendar .= "<td>". @if_empty($_time_in,'') . "</td>";
+			
+			$calendar .= "<td>" . @if_empty($_time_out,'') . "</td>";
+		
+		} else {
+
+			if($cur_date == $_today){
+				# sudah masuk belum pulang
+				if( isset($events[$cur_date]['time_in']) && !isset($events[$cur_date]['time_out']) ){
+		
+					$calendar .= "<td>". @if_empty($_time_in,'False') . "</td>";	
+		
+					$calendar .= "<td>". att_btn($events[$cur_date]['id']) . "</td>";
+					
+				} 
+				# belum masuk & belum pulang
+				else if(!isset($events[$cur_date]['time_in']) && !isset($events[$cur_date]['time_out']) ){
+					
+					$calendar .= "<td>". att_btn() . "</td>";	
+		
+					$calendar .= "<td>". '' . "</td>";
+				}
+				else {
+				
+					$calendar .= "<td>". @if_empty($_time_in,'') . "</td>";
+			
+					$calendar .= "<td>" . @if_empty($_time_out,'') . "</td>";
+				}
+
+			} else { // $_yesterday
+				# sudah masuk belum pulang
+				if( isset($events[$cur_date]['time_in']) && !isset($events[$cur_date]['time_out']) ){
+		
+					$calendar .= "<td>". @if_empty($_time_in,'False') . "</td>";	
+		
+					$calendar .= "<td>". att_btn($events[$cur_date]['id']) . "</td>"; // btn out
+					
+				} 
+				# belum masuk & belum pulang
+				else if(!isset($events[$cur_date]['time_in']) && !isset($events[$cur_date]['time_out']) ){
+					
+					$calendar .= "<td>". '' . "</td>";	
+		
+					$calendar .= "<td>". '' . "</td>";
+				}
+				else {
+				
+					$calendar .= "<td>". @if_empty($_time_in,'') . "</td>";
+			
+					$calendar .= "<td>" . @if_empty($_time_out,'') . "</td>";
+				}
+			}
+		}
+		
+		$calendar .= "</tr>";
+	}
+
+	$calendar .= "</tbody>";
+
+	return $calendar;
+}
+

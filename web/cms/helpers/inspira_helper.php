@@ -335,6 +335,7 @@ if(! function_exists('inc_script'))
 		$metode = $CI->config->slash_item('base_url').$method.'/';
 		$metode = str_replace('//', '/', $metode);
 		$metode = str_replace('http:/', 'http://', $metode);
+		$metode = str_replace('https:/', 'https://', $metode);
 		
 		foreach($files as $f){
 			$path = $metode.$f;

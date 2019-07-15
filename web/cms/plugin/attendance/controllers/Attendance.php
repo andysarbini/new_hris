@@ -8,7 +8,8 @@ class Attendance extends GW_User {
 		parent::__construct();
 	
 		$this->load->model("att_m");
-		
+
+		$this->usr_id = get_session('user_id');
 	}
 
 	function index(){
@@ -44,8 +45,11 @@ class Attendance extends GW_User {
 		
 		$_usr = get_user(array("d.usr_id"=>$data["usr_id"]));
 
-		$data["att"]	= att_to_array($this->att_m->get_attendance($_usr->nip, $data["year"], $data["month"]));
+		//$data["att"]	= att_to_array($this->att_m->get_attendance($_usr->nip, $data["year"], $data["month"]));
+		$_att = $this->att_m->get_attendance($_usr->nip, $data["year"], $data["month"]);
 		
+		$data['att'] = json_decode($this->load->view('att_json', array('att'=>$_att), true), true);
+
 		$data['breadcrumb_active'] = $data["title"];
 	
 		$this->masterpage->addContentPage('dashboard/breadcrumb', 'breadcrumb', $data);
@@ -58,18 +62,43 @@ class Attendance extends GW_User {
 	function att($_id = false){ // in or out
 		
 		$data['include_script'] = inc_script(
-			array(				
+			array(
+				"includes/geo/geoPosition.js",
+				"includes/geo/geoPositionSimulator.js",
 				"cms/plugin/attendance/js/masuk_keluar.js",
 			)
 		);
 		
 		$data['att_id'] = $_id ? $_id : 0;
 
+		// get office user
+		$_ = $this->att_m->__select('mdl_user_office', 'office_id', array('usr_id'=>$this->usr_id), false);
+		
+		$_off = json_decode($_->office_id, true);
+
+		$_where = 'office_id in ('.implode(',', $_off).')';
+
+		// get selected office
+		$_offices = $this->att_m->__select('mdl_office', 'office_id id, office title', $_where);
+
+		$offices = array();
+		// ubah array ke format yg di terima fungsi gen_option_html
+		foreach($_offices as $_var=>$_) $offices[] = array('id'=>$_->id,'title'=>$_->title);
+		
+		$data['offices'] = $offices;
+
 		$this->masterpage->addContentPage('dashboard/breadcrumb', 'breadcrumb', $data);
 	
 		$this->masterpage->addContentPage('button_attendance', 'contentmain', $data);
 
 		$this->masterpage->show( );
+	}
+	/**
+	 * return time now with gmt acuration
+	 */
+	function gmt($_gmt = 7){
+		$_offc_time = time() + 60 * 60 * $_gmt; 
+		echo gmdate('Y-m-d H:i:s', $_offc_time);
 	}
 	
 }

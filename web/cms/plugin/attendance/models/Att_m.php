@@ -83,5 +83,14 @@ class att_m extends GW_Model {
 		
 		$this->db->insert_batch("mdl_attendance", $data);
 	}
+
+	function get_office($_off_id = array()){
+		
+		$this->db->select('');
+		
+		$this->db->from('');
+		
+		$this->db->where($_w_str);
+	}
 	
 }
