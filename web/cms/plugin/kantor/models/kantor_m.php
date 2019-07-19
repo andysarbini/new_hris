@@ -109,12 +109,34 @@ class kantor_m extends GW_Model {
 		
 	function getProvinsi()
         {				
-			$this->db->select('prov');
+			$this->db->select('prov_kode, prov');
 			$this->db->from('ori_master_provinsi');
 			$query = $this->db->get();
 			debug($this->db->last_query());			
 			return $query->result_array();           
 		}
+		
+	function getKabupaten()
+        {				
+			$this->db->select('kab_kode, kab');
+			$this->db->from('ori_master_kabupaten');
+			$query = $this->db->get();
+			debug($this->db->last_query());			
+			return $query->result_array();           
+		}
+	function getKab()
+        {
+            /* kita joinkan tabel kota dengan provinsi
+            $this->db->order_by('kab', 'asc');
+            $this->db->join('ori_master_provinsi', 'ori_master_kabupaten.prov_kode = ori_master_provinsi.prov_kode');
+            return $this->db->get('ori_master_kabupaten')->result_array();*/
+			$this->db->select('*');
+			$this->db->from('ori_master_kabupaten');
+			$this->db->join('ori_master_provinsi', 'ori_master_provinsi.PROV_KODE = ori_master_kabupaten.PROV_KODE');
+			$query = $this->db->get();
+			debug($this->db->last_query());			
+			return $query->result_array();  
+        }		
 			
 	/*function getProvinsi()
         {

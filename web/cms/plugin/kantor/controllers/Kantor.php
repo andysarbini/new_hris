@@ -97,6 +97,8 @@ class Kantor extends GW_User {
 		$data['title'] = 'Input Data Kantor';			
 		$data['provinsi'] = $this->kantor_m->getProvinsi();
 		$data['per'] = $this->kantor_m->getPerusahaan();
+		$data['kabupaten'] = $this->kantor_m->getKabupaten();
+		$data['kabu'] = $this->kantor_m->getKab();
 		$this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required');
 		$this->form_validation->set_rules('nama_kantor', 'Nama Kantor', 'required');
 		$this->form_validation->set_rules('alamat_kantor', 'Alamat', 'required');
