@@ -1,4 +1,12 @@
 ## For reset github (Andy)
+$ git branch
+$ git remote rm origin
+$ git remote add origin https://github.com/andysarbini/new_hris.git
+$ git add .
+$ git commit -m "update form kantor dropdown provinsi-kabupaten"
+$ git pull --rebase origin master
+$ git push origin master
+
 git reset --mixed origin/master
 git add .
 git commit -m "This is a new commit for what I originally planned to be amended"
