@@ -1,0 +1,124 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+class kantor_m extends GW_Model {
+	
+	function get_list_kantor($_w = array()){
+		
+		/*$this->db->select('i.*');	
+		$this->db->from('mdl_office i');						
+		$query = $this->db->get();		
+		debug($this->db->last_query());		
+		return $query->result();
+		*/
+		
+		$this->db->select('mdl_office.*, mdl_company.company');
+		$this->db->from('mdl_office');
+		$this->db->join('mdl_company', 'mdl_office.company_id = mdl_company.company_id');
+		$query = $this->db->get();		
+		debug($this->db->last_query());		
+		return $query->result();
+	}
+	
+	function get_single_kantor($_w = array()){
+	
+		$_ = $this->get_list_kantor($_w);
+		
+		return $_[0];		
+	}
+	
+	function get_menu_company_id($company_id){
+		
+		$this->db->select('NAV_LIST_ID id');
+		
+		$this->db->from('mdl_navigation_list');
+		
+		$this->db->where('NAV_LIST_URL', $company_id);
+		
+		$this->db->where('NAV_TYPE_ID', 4); // 4 = kantor type
+		
+		$query = $this->db->get();
+		
+		return $query->row()->id;
+	}
+	
+	function get_menu($nav_list_id){
+		
+		$this->db->select('NAV_LIST_ID id, NAV_LIST_TITLE title, NAV_TYPE_ID type, NAV_LIST_URL url, NAV_LIST_PARENT_ID parent_id');
+		
+		$this->db->from('mdl_navigation_list');
+		
+		$this->db->where('NAV_LIST_ID', $nav_list_id);
+		
+		$query = $this->db->get();
+		
+		return $query->row();
+	}
+
+//Andy
+	function tambahkantor()
+	{
+		$data = [
+			
+			"company_name" => $this->input->post('nama_perusahaan'),
+			'office' => $this->input->post('nama_kantor'),
+			'alamat_office' => $this->input->post('alamat_kantor'),
+			'no_prop' => $this->input->post('provinsi'),
+			'no_kab' => $this->input->post('kabupaten'),
+			'lon' => $this->input->post('longitude'),
+			'lat' => $this->input->post('latitude'),
+			'gmt' => $this->input->post('gmt'),
+			];
+
+			$this->db->insert('mdl_office', $data);
+			
+			
+	}
+	
+	function hapuskantor($id)
+        {            
+            $this->db->delete('mdl_office', ['company_id' => $id]);
+		}
+
+	function getkantorById($id)
+        {
+            return $this->db->get_where('mdl_office', ['company_id' => $id])->row_array();
+		}
+		
+	function editkantor()
+        {
+            $data = [
+                "company" => $this->input->post('nama'),
+				'alamat' => $this->input->post('alamat'),
+				'telepon' => $this->input->post('telepon'),
+				'kodepos' => $this->input->post('kodepos'),
+				'keterangan' => $this->input->post('keterangan')
+            ];
+
+            $this->db->where('company_id', $this->input->post('id'));
+            $this->db->update('mdl_company', $data);
+		}
+		
+		function getPerusahaan()
+        {				
+			$this->db->select('company_id, company');
+			$this->db->from('mdl_company');
+			$query = $this->db->get();
+			debug($this->db->last_query());			
+			return $query->result_array();           
+		}
+		
+	function getProvinsi()
+        {				
+			$this->db->select('prov');
+			$this->db->from('ori_master_provinsi');
+			$query = $this->db->get();
+			debug($this->db->last_query());			
+			return $query->result_array();           
+		}
+			
+	/*function getProvinsi()
+        {
+            return $this->db->get_where('mdl_office', ['company_id' => $id])->row_array();
+		}*/	
+	
+}

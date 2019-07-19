@@ -17,10 +17,11 @@
 	
 	<link href="<?php echo template_dir(); ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo template_dir(); ?>css/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <!-- <link href="<?php echo template_dir(); ?>css/iCheck/custom.css" rel="stylesheet"> -->
+    <link href="<?php echo template_dir(); ?>css/iCheck/custom.css" rel="stylesheet">
     
     <link href="<?php echo template_dir(); ?>css/animate.css" rel="stylesheet">
     <link href="<?php echo template_dir(); ?>css/style.css" rel="stylesheet">
+
 
 
     <!-- Toastr style -->
@@ -119,10 +120,7 @@
     </div>           
     <div class="footer">
         <div class="pull-right">
-            HRIS APPLICATION <strong>INCONIS NUSA JAYA</strong>.
-        </div>
-        <div>
-            <strong>Copyright</strong> PT Smartelco Solusi Teknologi &copy; 2014-2019
+            <strong>Copyright</strong> Smartelco &copy; 2014-2019
         </div>
     </div>
     <!-- Mainly scripts -->

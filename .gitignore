@@ -9,6 +9,7 @@ nohup.out
 *-old
 *.old
 *.ovpn
+*.log
 web/myAdmin
 !*.gitkeep
 SOURCE_APP
