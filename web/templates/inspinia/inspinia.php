@@ -22,11 +22,8 @@
     <link href="<?php echo template_dir(); ?>css/animate.css" rel="stylesheet">
     <link href="<?php echo template_dir(); ?>css/style.css" rel="stylesheet">
 
-
-
-    <!-- Toastr style -->
+     <!-- Toastr style -->
 	<link href="<?php echo template_dir(); ?>css/toastr/toastr.min.css" rel="stylesheet">
-
 
     <!-- Gritter -->
 	<link href="<?php echo template_dir(); ?>js/assets/gritter/jquery.gritter.css" rel="stylesheet">
@@ -139,10 +136,10 @@
     <script src="<?php echo template_js(); ?>/inspinia.js"></script>
     <script src="<?php echo template_js(); ?>/plugins/pace/pace.min.js"></script>
     <!-- jQuery UI -->
-    <script src="<?php echo template_js(); ?>/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- <script src="<?php echo template_js(); ?>/plugins/jquery-ui/jquery-ui.min.js"></script> -->
 
     <!-- Toastr -->
-    <script src="<?php echo template_js(); ?>/plugins/toastr/toastr.min.js"></script>
+    <!-- <script src="<?php echo template_js(); ?>/plugins/toastr/toastr.min.js"></script> -->
     <!-- iCheck -->
     <!-- <script src="<?php echo template_js(); ?>/plugins/iCheck/icheck.min.js"></script> -->
 	<!-- the cms -->

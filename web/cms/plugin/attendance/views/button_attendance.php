@@ -11,6 +11,9 @@
                     <select class="form-control" id="office_id"><?php echo gen_option_html($offices);?></select>
                 </div>
                 <div>
+                    <a href="<?php echo base_url()."attendance";?>" class="btn btn-white">
+						<i class="fa fa-list"></i> Absensi 
+					</a>
                     <button class="btn btn-sm btn-primary pull-right m-t-n-xs"  id="btnAbsensi" onclick="getLocation()"><strong><?php echo @if_empty($att_id) ? 'PULANG':'HADIR';?></strong></button>
                 </div>
             </div>

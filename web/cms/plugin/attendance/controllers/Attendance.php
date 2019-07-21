@@ -32,7 +32,6 @@ class Attendance extends GW_User {
 		
 		$data["usr_id"] = get_session('user_id');
 		
-		#$this->load->model("cuti/cuti_m");
 		$this->load->model("cuti_m");
 
 		$data["min_year"] = $this->cuti_m->get_lowest_year($data["usr_id"]);
@@ -44,7 +43,7 @@ class Attendance extends GW_User {
 		$this->load->helper("cuti/cuti");
 		
 		$_usr = get_user(array("d.usr_id"=>$data["usr_id"]));
-
+		
 		//$data["att"]	= att_to_array($this->att_m->get_attendance($_usr->nip, $data["year"], $data["month"]));
 		$_att = $this->att_m->get_attendance($_usr->nip, $data["year"], $data["month"]);
 		
@@ -58,7 +57,9 @@ class Attendance extends GW_User {
 
 		$this->masterpage->show( );
 	}
-
+	/**
+	 * fungsi absensi keluar masuk
+	 */
 	function att($_id = false){ // in or out
 		
 		$data['include_script'] = inc_script(
@@ -93,12 +94,4 @@ class Attendance extends GW_User {
 
 		$this->masterpage->show( );
 	}
-	/**
-	 * return time now with gmt acuration
-	 */
-	function gmt($_gmt = 7){
-		$_offc_time = time() + 60 * 60 * $_gmt; 
-		echo gmdate('Y-m-d H:i:s', $_offc_time);
-	}
-	
 }

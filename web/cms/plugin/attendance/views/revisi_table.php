@@ -7,8 +7,15 @@
 						<select name="year" class="form-control">
 							<?php
 								$_slc_year = "";
+								
 								for($i = $min_year; $i <= $max_year; $i++) $_slc_year .=  "<option value='".$i."'".($year == $i ? " selected":"").">".$i."</option>";
-								echo $_slc_year;
+								
+								if($_slc_year !== '') echo $_slc_year;
+
+								else {
+									$_now_year = date('Y');
+									echo "<option value='".$_now_year."' selected>".$_now_year."</option>";
+								}
 							?>
 						</select>
 					</div>
@@ -27,18 +34,49 @@
 						</select>
 					</div>
 					<button class="btn btn-white" type="submit">Tampilkan</button>
-					<a href="<?php echo base_url()."attendance/att";?>" class="btn btn-white">
-						<i class="fa fa-plus"></i> Absensi 
+					<a href="<?php echo base_url()."attendance/revisi/form";?>" class="btn btn-white">
+						<i class="fa fa-plus"></i> Revisi 
 					</a>
-					<a href="<?php echo base_url()."attendance/revisi";?>" class="btn btn-white">
-						<i class="fa fa-edit"></i> Revisi
+					<a href="<?php echo base_url()."attendance";?>" class="btn btn-white">
+						<i class="fa fa-list"></i> Absensi 
 					</a>
 				</form>
 			</div>
 			<div class='ibox-content'>
-				<?php $this->load->helper("calender");
-					echo build_html_calendar_vertical($year, $month, $att);
-				?>
+<?php
+	if(count((array) $revs)){
+
+		$_a_jenis = json_decode(mdl_opt('bb_opt_tipe_revisi'), true);
+		$_a_status= array("Open", "Close");
+		$_a_keputusan = array("Tolak", "Terima");
+
+		echo "<table class='table table'>";
+		echo "<thead>";
+		echo "<tr>";
+		echo "<th>Mulai</th>";
+		echo "<th>Selesai</th>";
+		echo "<th>Pengajuan</th>";
+		echo "<th>Status</th>";
+		echo "<th>Keputusan</th>";
+		echo "</tr>";
+		echo "</thead>";
+		echo "<tbody>";
+		foreach($revs as $var=>$_){
+			echo "<tr>";
+			echo "<td>".$_->date_from."</td>";
+			echo "<td>".$_->date_to."</td>";
+			echo "<td>".$_a_jenis[$_->rev_type_id]."</td>";
+			echo "<td>"."<a href='".base_url()."attendance/revisi/form/".$_->rev_id."'>".$_a_status[$_->closed_status]."</a></td>";
+			echo "<td>".($_->closed_date? $_a_keputusan[$_->closed_status]:"Waiting")."</td>";
+			echo "</tr>";
+		}
+		echo "</tbody>";
+		echo "</table>";
+		
+	} else {
+		echo "<center>Tidak Ada pengajuan revisi</center>";
+	}
+?>
 			</div>
 		</div>
 	</div>
