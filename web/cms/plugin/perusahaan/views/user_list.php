@@ -1,3 +1,4 @@
+<!--onclick="window.location.replace('<?//= base_url('perusahaan/tambah'); ?>');" -->
 <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
@@ -5,7 +6,12 @@
                     
                     <div class="ibox-content">
 					<?= $this->session->flashdata('message'); ?>
-					<button type="button" class="btn btn-w-m btn-primary" onclick="window.location.replace('<?= base_url('perusahaan/tambah'); ?>');">Add Data</button>
+          <?php if (validation_errors()) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= validation_errors(); ?>
+                </div>
+            <?php endif; ?>
+					<button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#newSubMenuModal">Add Data</button>
                         <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover dataTables-example" >
                     <thead>
@@ -60,44 +66,34 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('menu/submenu'); ?>" method="post">
+        <form action="<?= base_url('perusahaan/tambah'); ?>" method="post">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Nama perusahaan</label>
-            <input type="text" class="form-control" id="recipient-name" value="<?php echo @if_empty($sm->nama_perusahaan,'');?>">
+            <input type="text" class="form-control" id="recipient-name" name="nama" value="<?php echo @if_empty($sm->company,'');?>">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Alamat:</label>
-            <textarea class="form-control" id="message-text"><?php echo @if_empty($sm->nama_perusahaan,'');?></textarea>
+            <textarea class="form-control" id="message-text" name="alamat"><?php echo @if_empty($sm->alamat,'');?></textarea>
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Lattitude</label>
-            <input type="text" class="form-control" id="recipient-name" value="<?php echo @if_empty($sm->nama_perusahaan,'');?>">
+            <label for="recipient-name" class="col-form-label">Telepon</label>
+            <input type="text" class="form-control" id="recipient-name" name="telepon" value="<?php echo @if_empty($sm->telepon,'');?>">
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Longitude</label>
-            <input type="text" class="form-control" id="recipient-name" value="<?php echo @if_empty($sm->nama_perusahaan,'');?>">
+            <label for="recipient-name" class="col-form-label">Kodepos</label>
+            <input type="text" class="form-control" id="recipient-name" name="kodepos" value="<?php echo @if_empty($sm->kodepos,'');?>">
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Propinsi</label>
-            <select class="form-control m-b" name="prov">
-            <?php echo gen_option_html(Modules::run('api/select', 'mdl_navigation_type',array('id'=>'NAV_TYPE_ID', 'title'=>'NAV_TYPE')), @if_empty($nav->type_id,0));?>
-            </select>            
+            <label for="message-text" class="col-form-label">Keterangan:</label>
+            <textarea class="form-control" id="message-text"name="ket" ><?php echo @if_empty($sm->keterangan,'');?></textarea>
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Kab/Kota</label>
-            <select class="form-control m-b" name="prov">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                    </select>
-          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" >Save</button>
+      </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
-      </div>
+      
     </div>
   </div>
 </div>        

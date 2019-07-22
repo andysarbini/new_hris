@@ -29,8 +29,8 @@
                             <td><?php echo $v->company;?></td>
                             <td><?php echo $v->office;?></td>
                             <td><?php echo $v->alamat;?></td>
-                            <td><?php echo $v->no_prop;?></td>
-                            <td><?php echo $v->no_kab;?></td>
+                            <td><?php echo $v->prov;?></td>
+                            <td><?php echo $v->kab;?></td>
 							<td><?php echo $v->lon;?></td>
                             <td><?php echo $v->lat;?></td>
                             <td><?php echo $v->gmt;?></td>

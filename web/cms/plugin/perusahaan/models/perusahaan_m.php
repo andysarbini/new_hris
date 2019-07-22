@@ -59,7 +59,7 @@ class perusahaan_m extends GW_Model {
 			'alamat' => $this->input->post('alamat'),
 			'telepon' => $this->input->post('telepon'),
 			'kodepos' => $this->input->post('kodepos'),
-			'keterangan' => $this->input->post('keterangan')
+			'keterangan' => $this->input->post('ket')
 			];
 
 			$this->db->insert('mdl_company', $data);

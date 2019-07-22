@@ -2,18 +2,12 @@
 
 class kantor_m extends GW_Model {
 	
-	function get_list_kantor($_w = array()){
-		
-		/*$this->db->select('i.*');	
-		$this->db->from('mdl_office i');						
-		$query = $this->db->get();		
-		debug($this->db->last_query());		
-		return $query->result();
-		*/
-		
-		$this->db->select('mdl_office.*, mdl_company.company');
+	function get_list_kantor($_w = array()){				
+		$this->db->select('mdl_office.*, mdl_company.company, ori_master_kabupaten.prov, ori_master_kabupaten.kab');
 		$this->db->from('mdl_office');
 		$this->db->join('mdl_company', 'mdl_office.company_id = mdl_company.company_id');
+		$this->db->join('ori_master_kabupaten', 'mdl_office.no_kab = ori_master_kabupaten.kab_kode and mdl_office.no_prop = ori_master_kabupaten.prov_kode');
+		$this->db->limit(20);
 		$query = $this->db->get();		
 		debug($this->db->last_query());		
 		return $query->result();
@@ -76,26 +70,29 @@ class kantor_m extends GW_Model {
 	
 	function hapuskantor($id)
         {            
-            $this->db->delete('mdl_office', ['company_id' => $id]);
+            $this->db->delete('mdl_office', ['office_id' => $id]);
 		}
 
 	function getkantorById($id)
         {
-            return $this->db->get_where('mdl_office', ['company_id' => $id])->row_array();
+            return $this->db->get_where('mdl_office', ['office_id' => $id])->row_array();
 		}
 		
 	function editkantor()
         {
             $data = [
-                "company" => $this->input->post('nama'),
-				'alamat' => $this->input->post('alamat'),
-				'telepon' => $this->input->post('telepon'),
-				'kodepos' => $this->input->post('kodepos'),
-				'keterangan' => $this->input->post('keterangan')
+            "company_id" => $this->input->post('company_id'),
+			'office' => $this->input->post('kantor'),
+			'alamat' => $this->input->post('alamat'),
+			'no_prop' => $this->input->post('provinsi'),
+			'no_kab' => $this->input->post('kabupaten'),
+			'lon' => $this->input->post('lon'),
+			'lat' => $this->input->post('lat'),
+			'gmt' => $this->input->post('gmt'),
             ];
 
-            $this->db->where('company_id', $this->input->post('id'));
-            $this->db->update('mdl_company', $data);
+            $this->db->where('office_id', $this->input->post('id'));
+            $this->db->update('mdl_office', $data);
 		}
 		
 		function getPerusahaan()
@@ -138,9 +135,9 @@ class kantor_m extends GW_Model {
 			return $query->result_array();  
         }		
 			
-	/*function getProvinsi()
-        {
-            return $this->db->get_where('mdl_office', ['company_id' => $id])->row_array();
-		}*/	
+	function getkabkot($id)
+	{
+		$hasil = $this->db->query("select * from ori_master_kabupaten join ori_master_provinsi on ori_master_kabupaten.PROV_KODE=ori_master_provinsi.PROV_KODE and ori_master_kabupaten.KAB_KODE=ori_master_provinsi.KAB_KODE where office_id='$id'");
+	}
 	
 }

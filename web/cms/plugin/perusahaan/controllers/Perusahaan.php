@@ -102,27 +102,25 @@ class Perusahaan extends GW_User {
 		$this->form_validation->set_rules('telepon', 'Telepon', 'required');
 		$this->form_validation->set_rules('kodepos', 'Kodepos', 'required');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-		if ($this->form_validation->run() == false) {
-            //$this->load->view('templates/header', $data);			
-		$this->masterpage->addContentPage('input_perusahaan', 'contentmain', $data);
-		$this->masterpage->show( );
+
+		if ($this->form_validation->run() == false) {		
+		//$this->masterpage->addContentPage('input_perusahaan', 'contentmain', $data);
+		//$this->masterpage->show( );
+		redirect('perusahaan', $data);
 		} else {
-			/*$data = [
-                'nip' => $this->input->post('nip_perusahaan'),
-                'nama' => $this->input->post('nama_perusahaan')               
-            ];
-            $this->db->insert('hris_perusahaan', $data);
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-					New perusahaan added!
-					</div>');
-			redirect('perusahaan/tambah');*/
 			$this->load->model('perusahaan_m', 'perusahaan'); //load Menu_model dibuat alias menu
 			$data['perusahaan'] = $this->perusahaan->tambahperusahaan();
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
 					New perusahaan has been added!
 					</div>');
 			redirect('perusahaan');
-		}	
+		}
+		/*$this->load->model('perusahaan_m', 'perusahaan'); //load Menu_model dibuat alias menu
+			$data['perusahaan'] = $this->perusahaan->tambahperusahaan();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+					New perusahaan has been added!
+					</div>');
+			redirect('perusahaan');	*/
 	}
 
 	function hapus($id)

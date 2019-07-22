@@ -131,5 +131,55 @@ class Kantor extends GW_User {
 		}	
 	}
 
+	function hapus($id)
+    {
+        $this->load->model('kantor_m', 'kantor'); //load Menu_model dibuat alias menu
+		$data['kantor'] = $this->kantor->hapuskantor($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+					Data has been deleted!
+					</div>');
+        redirect('kantor');
+	}
+	
+	public function edit($id)
+    {
+        $data['include_script']  = inc_script(array(
+		
+		));
+
+		$data['title'] = 'Edit Data Kantor.';
+	
+		$this->load->library('form_validation');
+		$data['include_script']  = inc_script(array(
+		
+		));
+		//$data['title'] = 'Input Data perusahaan';
+		$data['kantor'] = $this->kantor_m->getkantorById($id);		
+		$data['provinsi'] = $this->kantor_m->getProvinsi();
+		$data['per'] = $this->kantor_m->getPerusahaan();
+		//$data['kabupaten'] = $this->kantor_m->getKabupaten();
+		$data['kabu'] = $this->kantor_m->getKab();	
+		$this->form_validation->set_rules('kantor', 'Nama Kantor', 'required');
+		$this->form_validation->set_rules('lon', 'Longitude', 'required');
+		$this->form_validation->set_rules('lat', 'Lattitude', 'required');
+        if ($this->form_validation->run() == false) {		
+			$this->masterpage->addContentPage('edit_kantor', 'contentmain', $data);
+			$this->masterpage->show( ); 
+        } else {
+            $this->kantor_m->editkantor();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+					Data kantor Updated!
+					</div>');
+            redirect('kantor');
+        }       
+	}
+	
+	function getkabkot()
+	{
+		$id = $this->input->post('office_id');
+		$data = $this->kantor_m->getkabkot($id);
+		echo json_encode($data);
+	}
+
 }
 
