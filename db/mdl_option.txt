@@ -1,0 +1,2 @@
+INSERT INTO `mdl_options` (`OPT_ID`, `OPT`, `OPT_VAL`, `OPT_KET`, `OPT_ACTIVE`) VALUES
+(36, 'bb_opt_user_tipe_file', '{\"ktp\":\"KTP\",\"npwp\":\"NPWP\",\"KK\":\"Kartu Keluarga\",\"sim\":\"SIM\"}', 'jenis file yg akan di upload oleh user', 1);
