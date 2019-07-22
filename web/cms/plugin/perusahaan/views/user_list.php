@@ -29,7 +29,7 @@
 					 <?php $i = 1; ?>
                     <?php foreach ($perusahaan as $var=>$v) : ?>
                         <tr>
-                            <td><?php echo $v->company;?></td>
+                            <td><a href="<?= base_url(); ?>kantor/list/<?= $v->company_id; ?>"><?php echo $v->company;?></td>
                             <td><?php echo $v->alamat;?></td>
                             <td><?php echo $v->telepon;?></td>
                             <td><?php echo $v->kodepos;?></td>

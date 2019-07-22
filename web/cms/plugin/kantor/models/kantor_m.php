@@ -7,7 +7,7 @@ class kantor_m extends GW_Model {
 		$this->db->from('mdl_office');
 		$this->db->join('mdl_company', 'mdl_office.company_id = mdl_company.company_id');
 		$this->db->join('ori_master_kabupaten', 'mdl_office.no_kab = ori_master_kabupaten.kab_kode and mdl_office.no_prop = ori_master_kabupaten.prov_kode');
-		$this->db->limit(20);
+		$this->db->limit(10);
 		$query = $this->db->get();		
 		debug($this->db->last_query());		
 		return $query->result();
@@ -76,6 +76,18 @@ class kantor_m extends GW_Model {
 	function getkantorById($id)
         {
             return $this->db->get_where('mdl_office', ['office_id' => $id])->row_array();
+		}
+
+	function getkantorByIdper($id)
+        {
+			$this->db->select('mdl_office.*, mdl_company.company, ori_master_kabupaten.prov, ori_master_kabupaten.kab');
+			$this->db->from('mdl_office');
+			$this->db->join('mdl_company', 'mdl_office.company_id = mdl_company.company_id');
+			$this->db->join('ori_master_kabupaten', 'mdl_office.no_kab = ori_master_kabupaten.kab_kode and mdl_office.no_prop = ori_master_kabupaten.prov_kode');
+			$this->db->where("mdl_office.company_id = '$id'");			
+			$query = $this->db->get();		
+			debug($this->db->last_query());		
+			return $query->result();
 		}
 		
 	function editkantor()
