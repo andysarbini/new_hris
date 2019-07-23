@@ -7,6 +7,7 @@ class Profile extends GW_User {
 		parent::__construct();
 	
 		$this->load->model("profile_m");
+		$this->load->model("addfile_m");
 		
 		$this->load->model('bluehrd/bluehrd_user_m');
 		
@@ -25,7 +26,7 @@ class Profile extends GW_User {
 
 		$this->masterpage->show( );
 		*/
-		$this->view(get_session('user_id')); 
+		$this->view(get_session('user_id'));		
 	}
 	
 	function save(){
@@ -96,7 +97,20 @@ class Profile extends GW_User {
 	
 	function view($usr_id){
 		
+		$data['include_script'] = inc_script(
+			array(
+
+				"cms/plugin/profile_2/js/jasny-bootstrap.min.js",
+				"cms/plugin/profile_2/css/jasny-bootstrap.min.css",
+			)
+		);
+
+		$_w = array(
+			'usr_id' => get_session('user_id'),
+		);
+		
 		$data["user"]	= $this->bluehrd_user_m->get_user($usr_id);
+		$data['listkaryawan'] = $this->addfile_m->__select('mdl_user_files', '*', array_merge($_w));	
 
 		$data["title"] 	= $data["user"]->nama_lengkap ;
 		

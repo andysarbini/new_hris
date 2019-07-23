@@ -7,8 +7,48 @@
 		<div style="margin-bottom:20px;">
 		<a class="btn btn-default btn-block" href="<?php echo base_url()."profile/edit";?>">Edit Profil</a>
 		</div>
-		<?php } ?>
+		<?php } ?>		
+		
+            <div class="ibox-title">
+                <h5>Dokumen Pendukung </h5>
+            
+           <?php
+				if(count((array) $listkaryawan)){
+
+				$_a_jenis = json_decode(mdl_opt('bb_opt_user_tipe_file'), true);
+				// $_a_status= array("Open", "Close");
+				// $_a_keputusan = array("Tolak", "Terima");
+
+				echo "<table class='table table-striped'>";
+				echo "<thead>";
+				echo "<tr>";
+				echo "<th>Berkas</th>";				
+				echo "<th>Status</th>";
+				echo "</tr>";
+				echo "</thead>";
+				echo "<tbody>";
+				foreach($listkaryawan as $var=>$_){
+				echo "<tr>";
+				echo "<td>".$_->tipeberkas."</td>";
+				// echo"<td>asfsaf</td>";
+				
+				echo "<td><i class='fa fa-check'></i><a href='#'>Delete</a></td>";
+				echo "</tr>";
+				}
+				echo "</tbody>";
+				echo "</table>";
+
+				} else {
+				echo "<center>Tidak Ada pengajuan revisi</center>";
+				}
+				?> 
+				<button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#newSubMenuModal">Upload</button>
+			</div>
+		
 	</div>
+
+		
+
 	<div class="col-md-9 table-responsive">
 		<table class="table">
 			<tbody>
