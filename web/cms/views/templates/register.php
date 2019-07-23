@@ -36,7 +36,7 @@
 			
             <mp:Contentmain />
 			<p class="text-muted text-center"><small>Belum Punya Akun ?</small></p>
-                <a class="btn btn-sm btn-white btn-block" href="register">Buat Akun Sekarang.</a>
+                <a class="btn btn-sm btn-white btn-block" href="register.html">Buat Akun Sekarang.</a>
             <p class="m-t"> <small>Smartelco Apps &copy; 2019</small> </p>
         </div>
     </div>
