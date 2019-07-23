@@ -19,7 +19,7 @@ services:
     volumes:
       - ./db/mariadb:/var/lib/mysql
       - ./sys/logs/mariadb:/var/log/mysql
-      - ./db/cms_bluehrd.sql:/docker-entrypoint-initdb.d/dump.sql
+#      - ./db/cms_bluehrd.sql:/docker-entrypoint-initdb.d/dump.sql
     #~ uncomment 2 ports to expose database to lan
     #~ports:
       #~- 3306:3306

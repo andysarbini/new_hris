@@ -14,6 +14,16 @@ class foo extends GW_Controller {
 
 	function template($_path = false){
 
+		$data['include_script'] = inc_script(
+			array(
+				"includes/moment/moment.min.js",
+				#"includes/datepicker/bootstrap-datetimepicker.min.js",
+				#"includes/datepicker/bootstrap-datetimepicker.css",
+				"cms/plugin/attendance/js/revisi_form.js",
+			)
+		);
+
+
 		$_path = $_path ? $_path : '_example';
 		
 		$data['title'] = 'your templating test';

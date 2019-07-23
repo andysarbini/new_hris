@@ -225,3 +225,62 @@ function build_html_calendar_vertical($year, $month, $events = null) {
 	return $calendar;
 }
 
+function build_html_calendar_vertical_admin($attendance, $year, $month, $status){
+
+	$css_cal = 'table table-striped';
+	$css_cal_row = '';
+	$css_cal_day_head = 'calendar-day-head';
+	$css_cal_day = 'calendar-day';
+	$css_cal_day_number = 'day-number';
+	$css_cal_day_blank = 'calendar-day-np';
+	$css_cal_day_event = 'calendar-day-event';
+	$css_cal_event = 'calendar-event';
+
+	// headings
+	
+	$headings = ['Tgl', 'Hari', 'in', 'out', 'status'];
+	$days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu' ];
+
+	// draw table
+	$calendar =
+		"<table class='{$css_cal}'>" .
+		"<thead>".
+		"<tr class='{$css_cal_row}'>" .
+		"<th class='{$css_cal_day_head}'>" .
+		implode("</th><th class='{$css_cal_day_head}'>", $headings) .
+		"</th>" .
+		"</tr>".
+		"</thead>";
+	
+	$calendar .= "<tbody>";
+	
+	$running_day = date('N', mktime(0, 0, 0, $month, 1, $year));
+	$days_in_month = date('t', mktime(0, 0, 0, $month, 1, $year));
+
+	for ($day = 1; $day <= $days_in_month; $day++) {
+	
+		$tgl = $year.'-'.$month.'-'.($day > 10 ? $day : '0'.$day); 
+
+		$calendar .= "<tr class='{$css_cal_row}'>";
+		
+		$calendar .= "<td>" . $day . "</td>";
+		$calendar .= "<td>" . $days[date('w', strtotime($year.'-'.$month.'-'.$day))] . "</td>";
+		$calendar .= "<td>" . @if_empty($attendance[$tgl]['time_in'],'') . "</td>";
+		$calendar .= "<td>" . @if_empty($attendance[$tgl]['time_out'],'') . "</td>";
+		$_input	= @if_empty($attendance[$tgl]['att_id'], 0).",\"".$tgl."\"";
+		$calendar .= "<td>" . "<button onclick='load_form_ubah(".$_input.");false;' class='btn btn-info btn-sm'>";
+		
+		if(@if_empty($attendance[$tgl]['status'])) $calendar .= $status[$attendance[$tgl]['status']];
+		
+		else $calendar .= "ubah";
+		
+		$calendar .= "</button>" . "</td>";
+		
+		$calendar .= "</tr>";
+	}
+
+	$calendar .= "</tbody>";
+
+	return $calendar;
+
+}
