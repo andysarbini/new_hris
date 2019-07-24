@@ -37,8 +37,8 @@
             
             <form action="<?php echo base_url()."register/save";?>" method="post"  enctype="multipart/form-data">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nomor Induk Karyawan" required="" name="nip">
-                </div>
+                    <input type="text" class="form-control" placeholder="Nomor Induk Karyawan" required="" name="nip" id='nip'>
+                </div><span style='color:red; font-weight:bold;' id='alert_double_name'></span>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Nomor Kartu Tanda Penduduk" required="" name="nik">
                 </div>
@@ -63,6 +63,29 @@
 	<script src="<?php echo template_js(); ?>/jquery-3.1.1.min.js"></script>
     <script src="<?php echo template_js(); ?>/bootstrap.min.js"></script>
     <script src="<?php echo template_js(); ?>/alert-login.js"></script>
+
+    <script type="text/javascript">
+	
+$('#nip').blur(function(){
+	
+	//$('#nip').val();
+				
+	// check double name
+	$.post('<?php echo base_url().'register/check_existing_nip/'; ?>'+$('#nip').val(), {'nip':$('#nip').val(),'nip':$('#nip').val()},
+		function(d){
+			if(parseInt(d) > 0) {
+				$('#alert_double_name').html("ba mail rempong");
+				$('#save').hide();
+			} else {
+				$('#alert_double_name').html("");
+				$('#save').show();
+			}
+		}
+	,'json');
+	
+	
+});
+</script>
 
 </body>
 
