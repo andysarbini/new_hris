@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 23, 2019 at 07:26 PM
--- Server version: 10.1.39-MariaDB
--- PHP Version: 7.2.18
+-- Host: mariadb
+-- Generation Time: Jul 24, 2019 at 09:19 PM
+-- Server version: 10.3.9-MariaDB-1:10.3.9+maria~bionic
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `new_bb`
+-- Database: `cms_bluehrd`
 --
 
 -- --------------------------------------------------------
@@ -33,7 +33,8 @@ CREATE TABLE `mdl_user_temp` (
   `nip` varchar(32) NOT NULL,
   `nik` varchar(32) NOT NULL,
   `email` varchar(32) NOT NULL,
-  `usr_pass` varchar(64) NOT NULL
+  `usr_pass` varchar(64) NOT NULL,
+  `key` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
