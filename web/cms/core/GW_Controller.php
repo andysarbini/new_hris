@@ -12,5 +12,6 @@ class GW_Controller extends MX_Controller
 	
 		//$this->masterpage->setMasterPage('templates/'. get_option('template') );
 		$this->masterpage->setMasterPage(get_option('template') );
+
 	}
 }
