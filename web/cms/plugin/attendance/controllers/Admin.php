@@ -221,5 +221,150 @@ class Admin extends GW_Admin
 		redirect(base_url()."admin/attendance");
 		
 	}
+	/*
+		table revisi
+	*/
+	function revisi(){
+
+		$data = array('title'=>'Revisi Absensi');
+		
+		$data['include_script'] = inc_script(
+		
+			array(
+			
+			#	"includes/datepicker/bootstrap-datepicker.js",
+				
+			#	"includes/datepicker/locales/bootstrap-datepicker.id.js",
+			
+				"includes/datatables/jquery.dataTables.min.js",
+		
+				"includes/datatables/jquery.dataTables.min.css",
+		
+				"cms/plugin/attendance/js/admin_revisi.js",
+			)
+		); 
+
+		$_w = array(
+			'YEAR(date_from)'	=> @if_empty($_GET['year']) ? (int)$this->input->get('year') : (int)date('Y'),
+			'MONTH(date_from)'=> @if_empty($_GET['month']) ? (int)$this->input->get('month') : (int)date('n'),
+			'closed_status'		=> @if_empty($_GET['closed_status']) ? $this->input->get('closed_status') : 0,
+			'is_delete'			=> 0
+		);
+
+		if(isset($_GET['rev_type_id']) && $_GET['rev_type_id'] != '0') 	$_w['rev_type_id'] = $this->input->get('rev_type_id');
+		 
+
+		$this->load->config('attendance');
+
+		$rule_upload = $this->config->item('revisi_uploads');
+
+		$data['upload_path'] = $rule_upload['upload_path'];
+
+		$data['month']	= @if_empty($this->input->get('month'), date('n'));
+
+		$data['year']	= @if_empty($this->input->get('year'), date('Y'));
+
+		$_year = $this->att_m->__select('mdl_attendance_revisi', "MIN(YEAR(date_from)) min", array(), false);
+		
+		$data["min_year"] = @if_empty($_year->min, date("Y"));
+		
+		$data["max_year"] = date("Y") + 1;
+
+		$data['revs'] = $this->att_m->admin_get_list_revisi($_w);
+
+		$this->masterpage->addContentPage('admin_revisi_table', 'contentmain', $data);
+
+		$this->masterpage->show( );
+	}
+
+	function revisi_form($_rev_id){
+
+		$data['include_script'] = inc_script(
+		
+			array(
+			
+				"cms/plugin/attendance/js/admin_revisi_form.js",
+			)
+		); 
+
+		$data['title'] = "Form Revisi Admin";
+
+		$_w = array('rev_id'=>$_rev_id);
+
+		$rule_upload = $this->config->item('revisi_uploads');
+
+		$data['upload_path'] = $rule_upload['upload_path'];
+
+		$data['rev'] = $this->att_m->admin_get_list_revisi($_w);
+
+		$this->masterpage->addContentPage('admin_revisi_form', 'contentmain', $data);
+
+		$this->masterpage->show( );
+	}
+
+	function revisi_simpan(){
+
+		$this->load->helper('attendance');
+
+		$_w['rev_id'] = $this->input->post('rev_id');
+
+		$data = array(
+			'closed_date' 	=> implode(' ', get_now_time()), 
+			'closed_usr_id' => get_session('user_id'),
+			'closed_status' => $this->input->post('closed_status'),
+			'closed_msg'	=> $this->input->post('closed_msg')
+		);
+
+		$this->att_m->__update('mdl_attendance_revisi', $data, $_w);
+
+		redirect(base_url()."attendance/admin/revisi");
+	}
+
+	function load_attendance_list($_usr_id, $_year, $_month){
+		
+		$_w = array(
+			'usr_id' => $_usr_id,
+			'YEAR(date_in)' => (int)$_year,
+			'MONTH(date_in)'=> (int)$_month
+		);
+
+		$atts = $this->att_m->__select('mdl_attendance', '*', $_w);
+		debug($atts, '$atts');
+		$_attendance = array();
+		
+		foreach($atts as $_var=>$_) $_attendance[$_->date_in] = array('att_id'=>$_->att_id,'status'=>$_->status,'time_in'=>$_->time_in, 'time_out'=>$_->time_out);
+		debug($_attendance, '$_attendance');
+		$this->load->helper('calender');
+
+		$status = json_decode(mdl_opt('bb_opt_tipe_revisi'), true);
+
+		echo build_html_calendar_vertical_admin($_attendance, $_year, $_month, $status);
+
+	}
+
+	function revisi_simpan_ubah_status(){
+
+		$_data = array(
+			'date_in' 	=> $this->input->post('date_in'),
+			'rev_id'	=> $this->input->post('rev_id'),
+			'status'	=> $this->input->post('status'),
+			'usr_id'	=> $this->input->post('usr_id'),
+			'time_in'	=> '00:00:03',
+			'lat_in'	=> 0,
+			'lon_in'	=> 0
+		);
+
+		$_att_id = $this->input->post('att_id');
+
+		if($_att_id) $a = $this->att_m->__update('mdl_attendance', $_data, array('att_id'=>$_att_id));
+		
+		else $a = $this->att_m->__insert('mdl_attendance', $_data);
+		
+		if($a) $msg = array('status'=>'success', 'message'=>'Berhasil Mengubah Absensi');
+
+		else $msg = array('status'=>'error', 'message'=>'Gagal Mengubah Absensi');
+
+		echo json_encode($msg);
+	}
 	
 }

@@ -27,7 +27,7 @@
                         <select name="rev_type_id" class="form-control">
                         <?php 
                             $_tipe_revisi = mdl_opt('bb_opt_tipe_revisi');
-                            echo gen_option_html($_tipe_revisi, @if_empty($data->keterangan));
+                            echo gen_option_html($_tipe_revisi, @if_empty($data->rev_type_id));
                         ?>
                         </select>     
                         <div class="invalid_izin"></div>

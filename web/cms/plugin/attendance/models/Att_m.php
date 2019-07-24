@@ -92,5 +92,22 @@ class att_m extends GW_Model {
 		
 		$this->db->where($_w_str);
 	}
+
+	function admin_get_list_revisi($_w = array()){
+		
+		$this->db->select('r.*, d.nama_lengkap, d.jabatan, d.profile_picture');
+
+		$this->db->from('mdl_attendance_revisi r');
+
+		$this->db->join('mdl_user_data d', 'd.usr_id=r.usr_id');
+
+		foreach($_w as $var=>$val) $this->db->where($var, $val);
+
+		$query = $this->db->get();
+
+		debug($this->db->last_query());
+
+		return isset($_w['rev_id']) ? $query->row(): $query->result();
+	}
 	
 }
