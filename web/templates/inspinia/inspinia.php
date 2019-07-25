@@ -48,7 +48,7 @@
                             IN+
                         </div>
                     </li>
-		            <?php echo Modules::run('navigation/generate_menu_array2', "dashboard-side-menu", 'sidebar'); ?>
+		            <?php echo Modules::run('navigation/generate_menu_array2', "new-side-menu", 'sidebar'); ?>
                 </ul>
             </div>
         </nav>
