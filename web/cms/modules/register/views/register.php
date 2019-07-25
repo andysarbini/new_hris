@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" class="js-site-favicon" href="inconis.png">
 
-    <title>Login Applikasi</title>
+    <title>Register Applikasi</title>
 
     
 	<!-- Bootstrap -->

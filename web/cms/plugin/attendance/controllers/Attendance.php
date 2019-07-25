@@ -71,11 +71,12 @@ class Attendance extends GW_User {
 		);
 		
 		$data['att_id'] = $_id ? $_id : 0;
-
+		
 		// get office user
 		$_ = $this->att_m->__select('mdl_user_office', 'office_id', array('usr_id'=>$this->usr_id), false);
-		
+		if(!empty($_->office_id)) {
 		$_off = json_decode($_->office_id, true);
+		
 
 		$_where = 'office_id in ('.implode(',', $_off).')';
 
@@ -88,10 +89,21 @@ class Attendance extends GW_User {
 		
 		$data['offices'] = $offices;
 
+		
+
 		$this->masterpage->addContentPage('dashboard/breadcrumb', 'breadcrumb', $data);
 	
 		$this->masterpage->addContentPage('button_attendance', 'contentmain', $data);
 
 		$this->masterpage->show( );
+		}else {
+			$this->masterpage->addContentPage('dashboard/breadcrumb', 'breadcrumb');
+	
+			$this->masterpage->addContentPage('office_0', 'contentmain');
+	
+			$this->masterpage->show( );
+		}
 	}
+	
+
 }
