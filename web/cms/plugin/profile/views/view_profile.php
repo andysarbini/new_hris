@@ -23,7 +23,7 @@
 				echo "<thead>";
 				echo "<tr>";
 				echo "<th>Berkas</th>";				
-				echo "<th>Status</th>";
+				echo "<th>Action</th>";
 				echo "</tr>";
 				echo "</thead>";
 				echo "<tbody>";
@@ -32,7 +32,11 @@
 				echo "<td>".$_->tipeberkas."</td>";
 				// echo"<td>asfsaf</td>";
 				
-				echo "<td><i class='fa fa-check'></i><a href='#'>Delete</a></td>";
+				echo "<td>"; ?>
+				
+				<div class='infont col-md-3 col-sm-4'><a href='#'><i class='fa fa-download'></i></a></div>
+				<div class='infont col-md-3 col-sm-4'><a href='<?= base_url(); ?>profil/delete/<?= $_->file_id; ?>'><i class='fa fa-times'></i></a></div>	
+				<?php "</td>";
 				echo "</tr>";
 				}
 				echo "</tbody>";
@@ -42,7 +46,8 @@
 				echo "<center>Tidak Ada pengajuan revisi</center>";
 				}
 				?> 
-				<button type="button" class="btn btn-w-m btn-primary" data-toggle="modal" data-target="#newSubMenuModal">Upload</button>
+				<button class="btn btn-outline btn-success  dim" type="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-upload"></i></button>
+				
 			</div>
 		
 	</div>
@@ -115,3 +120,54 @@
 		</table>
 	</div>
 </div>
+
+<!--Andy, modal upload file-->
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+			<div class="ibox-title">
+                <h5>Upload Dokumen Pendukung</h5>
+            </div>
+            <div class="modal-body">
+				<form action="<?php echo base_url()."profile/save";?>" method="post"  enctype="multipart/form-data">            
+					<div class="form-group"><label>Jenis</label>
+						<select name="tipeberkas" class="form-control">								
+							<?php 
+								$_tipe_revisi = mdl_opt('bb_opt_user_tipe_file');
+								echo gen_option_html($_tipe_revisi, @if_empty($data->tipeberkas));
+							?>
+						</select> 
+					</div>
+					<div class="form-group"><label>File Pendukung</label>		
+						<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+							<div class="form-control" data-trigger="fileinput">
+								<i class="glyphicon glyphicon-file fileinput-exists"></i>
+								<span class="fileinput-filename"></span>
+							</div>
+							<span class="input-group-addon btn btn-default btn-file">
+								<span class="fileinput-new">Select file</span>
+								<span class="fileinput-exists">Change</span>
+								<input type="file" name="file">
+							</span>
+								<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+						</div>		
+								
+						<?php if(isset($data->path_file)) { 
+						$this->load->config('fileupload_c');		
+						$rule_upload = $this->config->item('profilupload');
+						?><br />
+						<a href="<?php echo base_url().$rule_upload['upload_path'].'/'.$data->path_file;?>" class="btn btn-white"><i class="fa fa-download"> <?php echo $data->path_file;?></i> </a>
+						<br />
+						<br />
+						<?php } ?>														
+					</div>					
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                
+				<button class="btn btn-success " type="submit"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">Upload</span></button>
+            </div>
+			</form>
+         </div>
+        </div>
+    </div>

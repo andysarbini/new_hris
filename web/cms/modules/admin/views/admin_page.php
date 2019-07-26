@@ -55,6 +55,17 @@
 					<p><a href="<?php echo base_url();?>attendance/admin/revisi">Revisi</a></p>
 				</div>
 			</div>
+			<div class="col-md-3">
+				<div class="panel panel-default text-center">
+					<a href="<?php echo base_url();?>perusahaan/admin">
+						<div class="panel-body">
+							<span aria-hidden="true" class="far fa-calendar-check fa-3x"></span>
+						</div>
+					</a>
+					<p><a href="<?php echo base_url();?>perusahaan/admin">Perusahaan/Kantor</a></p>
+				</div>
+			</div>	
+
 <!--
 			<div class="col-md-3">
 				<div class="panel panel-default text-center">

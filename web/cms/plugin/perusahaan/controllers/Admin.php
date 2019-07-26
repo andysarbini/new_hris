@@ -1,167 +1,455 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
-class Admin extends GW_Admin {
-
+class Admin extends GW_Admin
+{
 	function __construct(){
-	
-		parent::__construct();
-	
-		$this->load->model("info_m");
+		parent::__construct();		
+		//$this->load->model("att_m");
+		$this->load->model("perusahaan_m");
 	}
+	
+	/**
+	 * tampilkan list user yg sudah diinput
+	 * input param berdasarkan tanggal
+	 */
 
-	// base_url()."cuti/admin/index/".?year=2018&month=7
+//Andy,	Index, tambah
 	function index(){
 		
-		$data = array('selected_company'=>'', 'selected_jabatan'=>'');
-		
-		// include third library
 		$data['include_script'] = inc_script(
-			
+		
 			array(
+			
+				"includes/datepicker/bootstrap-datepicker.js",
+				
+				"includes/datepicker/locales/bootstrap-datepicker.id.js",
+				
+			#	"includes/jquery-timepicker/jquery.timepicker.min.js",
+				
+			#	"includes/jquery-timepicker/jquery.timepicker.min.css",
 			
 				// "includes/datatables/jquery.dataTables.min.css",
 			
 				"includes/datatables/jquery.dataTables.min.js",
-			
-				"cms/plugin/informasi/js/admin.js",
+		
+			#	"cms/plugin/attendance/js/admin.js",
+				"cms/plugin/perusahaan/js/perusahaan.js",
 			)
-		);
-		 
-		$_w = array();
+		); 				
 		
-		if(isset($_GET['company_id']) && $_GET['company_id'] != '') {
+		$data['title']	= "Data Perusahaan";
 		
-			$_w['company_id'] = $this->input->get('company_id');
-			
-			$data['selected_company'] = $_w['company_id'];
-		}
+		$_usr 	= $this->perusahaan_m->__select('mdl_user_data', '*', array('usr_id'=>get_session("user_id")), false);
 		
-		if(isset($_GET['jabatan_id']) && $_GET['jabatan_id'] != '') {
-			
-			$_w['jabatan_id'] = $this->input->get('jabatan_id');
-			
-			$data['selected_jabatan'] = $_w['jabatan_id'];
-		}
+		$_w 	= array(
+					"company_id"=>@if_empty($_usr->company, ''),
+					"jabatan_id"=>@if_empty($_usr->jabatan, '')
+				);
 		
-		if(isset($_GET['category_id']) && $_GET['category_id'] != '') {
-			
-			$_w['category'] = $this->input->get('category_id');
-			
-			$data['selected_category'] = $_w['category'];
-		}
+		$data['perusahaan'] = $this->perusahaan_m->get_list_perusahaan();
+		//$data['provinsi'] = $this->perusahaan_m->getProvinsi();
+		$data['breadcrumb_active'] = $data['title'];
 		
-		debug($_w, '_w');
+		$data['str_category']= json_decode(Modules::run("api/options", "bb_opt_category_perusahaan"), true);
+	
+		$this->masterpage->addContentPage('dashboard/breadcrumb', 'breadcrumb', $data);
 		
-		$data['str_company']= Modules::run("api/options", "bb_opt_company");
-		
-		$data['slc_company']= json_decode($data['str_company'], true);
-		
-		$data['str_jabatan']= Modules::run("api/options", "bb_opt_jabatan");
-		
-		$data['slc_jabatan']= json_decode($data['str_jabatan'], true);
-		
-		$data['str_category']= Modules::run("api/options", "bb_opt_category_informasi");
-		
-		$data['slc_category']= json_decode($data['str_category'], true);
-		
-		$data['tables'] = $this->info_m->get_list_info($_w);
-		
-		//debug($data['tables']);
-		
-		$data['title']	= 'Employee Information Center' ;
-		
-		$this->masterpage->addContentPage('admin_list', 'contentmain', $data);
+		$this->masterpage->addContentPage('user_form', 'contentmain', $data);
 
 		$this->masterpage->show( );
 	}
+
+	function tambah($page = 1){
+
+		$data['include_script']  = inc_script(array(
+		
+		));
+
+		$data['title'] = 'Profil perusahaan.';
 	
-	function form($info_id=null){
+		$this->load->library('form_validation');
+		$data['include_script']  = inc_script(array(
 		
-		if($info_id) { 
-			
-			$_w = array("i.info_id"=>$info_id);
-			
-			$data['info'] = $this->info_m->get_single_info($_w);
-			
-			$data['role'] = $this->info_m->__select("mdl_info_role i", "*", $_w);			
-		} 
-		
-		else $data['role'] = (object) array(); // create dumy object, removed error 'role variable not found'
-		
-		$data['slc_category']= Modules::run("api/options", "bb_opt_category_informasi");
-		
-		$data['slc_company']= Modules::run("api/options", "bb_opt_company");
-		
-		$data['slc_jabatan']= Modules::run("api/options", "bb_opt_jabatan");
-		
-		echo $this->load->view("admin_form", $data, true);
+		));
+		$data['title'] = 'Input Data perusahaan';	
+		$this->form_validation->set_rules('nama', 'Nama perusahaan', 'required');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+		$this->form_validation->set_rules('telepon', 'Telepon', 'required');
+		$this->form_validation->set_rules('kodepos', 'Kodepos', 'required');
+		$this->form_validation->set_rules('ket', 'Keterangan', 'required');
+
+		if ($this->form_validation->run() == false) {		
+
+		redirect('perusahaan/admin', $data);
+		} else {
+			$this->load->model('perusahaan_m', 'perusahaan'); //load Menu_model dibuat alias menu
+			$data['perusahaan'] = $this->perusahaan->tambahperusahaan();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+					New perusahaan has been added!
+					</div>');
+			redirect('perusahaan/admin');
+		}
+
 	}
+
+	public function edit($id)
+    {
+        $data['include_script']  = inc_script(array(
+		
+		));
+
+		$data['title'] = 'Data perusahaan.';
+	
+		$this->load->library('form_validation');
+		$data['include_script']  = inc_script(array(
+		
+		));
+		$data['title'] = 'Input Data perusahaan';
+		$data['perusahaan'] = $this->perusahaan_m->getperusahaanById($id);	
+		$this->form_validation->set_rules('nama', 'Nama perusahaan', 'required');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+		$this->form_validation->set_rules('telepon', 'Telepon', 'required');
+		$this->form_validation->set_rules('kodepos', 'Kodepos', 'required');
+		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        if ($this->form_validation->run() == false) {		
+		$this->masterpage->addContentPage('edit_perusahaan', 'contentmain', $data);
+		$this->masterpage->show( ); 
+        } else {
+            $this->perusahaan_m->editperusahaan();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+					Data perusahaan Updated!
+					</div>');
+            redirect('perusahaan');
+        }       
+	}
+	
+	function hapus($id)
+    {
+        $this->load->model('perusahaan_m', 'perusahaan'); //load Menu_model dibuat alias menu
+		$data['perusahaan'] = $this->perusahaan->hapusperusahaan($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+					Data has been deleted!
+					</div>');
+        redirect('perusahaan/admin');
+	}
+	
+	function form($att_id = 0){
+		
+		$_p['att_id'] 	= $att_id;
+		
+		$att = $this->att_m->get_single_attendance(null,null,$_p);
+		
+		//$this->load->view("modal_form", $data); 
+		
+		echo json_encode($att);
+	}
+/*
+	function user($usr_id = null, $year = null, $month = null){
+
+		$data["year"] 	= @if_empty(getVar("year")) ? getVar("year") : date("Y");
+
+		$data["month"] 	= @if_empty(getVar("month")) ? getVar("month") : date("n");
+
+		$data["usr_id"] = $usr_id;
+
+		$this->load->model("bluehrd/bluehrd_user_m");
+
+		$data["data_user"] = $this->bluehrd_user_m->get_user($data["usr_id"]);
+
+		$data["title"] 	= "Administrator Page Attendance";
+
+		$data['include_script'] = inc_script(
+			
+			array(
+				
+				"cms/plugin/attendance/js/att.js",
+				
+				"cms/plugin/attendance/css/calender.css",
+			)
+		);
+		
+		$data['months']	= json_decode(Modules::run('api/options','bb_opt_bulan'), true);
+
+		$this->load->model("cuti/cuti_m");
+
+		$data["min_year"] = $this->cuti_m->get_lowest_year($data["usr_id"]);
+
+		$data["max_year"] = date("Y") + 1;
+		
+		$this->load->helper("attendance");
+
+		$data["att"]	= att_to_array($this->att_m->get_attendance($data["usr_id"], $data["year"], $data["month"]));
+
+		$this->masterpage->addContentPage('user_form', 'contentmain', $data);
+
+		$this->masterpage->show( );
+	}
+*/
 	
 	function save(){
 		
-		$_w["info_id"] = (int) $this->input->post("info_id");
+		$this->load->helper("cuti/cuti");
 		
-		$_p['title'] 		= $this->input->post('title');
+		$_w = array();
 		
-		$_r['company_ids'] 	= $this->input->post('company_id');
+		$_w['att_id'] = $this->input->post('att_id');
+
+		$_d = array();
 		
-		$_r['jabatan_ids'] 	= $this->input->post('jabatan_id');
+		$this->load->model("bluehrd/bluehrd_user_m");
 		
-		$_p['description'] 	= $this->input->post('description');
+		#$_d['usr_id'] 	= $this->bluehrd_user_m->get_user(array("nip"=>$this->input->post("nip")))->usr_id;
+		$_d['nip'] 		= $this->input->post("nip");
 		
-		$_p['category'] 	= $this->input->post('category');
+		$_jam_in 		= count(explode(":",$this->input->post('jam_in'))) == 3 ? "":":00";
 		
-		$config['upload_path']          = './uploads/info/';
+		#$_d['time_in']	= bbdate($this->input->post('tgl_in'))." ".$this->input->post('jam_in').$_jam_in;
+		
+		$_jam_out 		= count(explode(":",$this->input->post('jam_out'))) == 3 ? "":":00";
+		
+		#$_d['time_out']	= bbdate($this->input->post('tgl_out'))." ".$this->input->post('jam_out').$_jam_out;
+		
+		$_d['date_in']	= bbdate($this->input->post('tgl_in'));
+		
+		$_d['time_in']	= $this->input->post('jam_in').$_jam_in;
+		
+		$_d['date_out']	= bbdate($this->input->post('tgl_out'));
+		
+		$_d['time_out']	= $this->input->post('jam_out').$_jam_in;
+		
+		$_d['status'] 	= $this->input->post('status');
+		
+		#dump($_POST, 'POST');
+		
+		#dump_exit($_d, '_d');
+		
+		$_ = $_w['att_id'] ? $this->att_m->__update('mdl_attendance', $_d, $_w) : $this->att_m->__insert('mdl_attendance', $_d);
+		
+		//echo $_;
+		
+		redirect(base_url()."admin/attendance/?date=".$this->input->post('tgl_in'));
+	}
+	
+	function delete($att_id){
+		
+		$_w['att_id'] = $att_id;
+		
+		echo $this->att_m->__delete('mdl_attendance', $_w);
+	}
+	
+	function import_csv(){
+		
+		$config['upload_path']          = './uploads/attendance/';
         
-        $config['allowed_types']        = 'pdf|docx|doc|xls|xlsx';
+        $config['allowed_types']        = 'csv|txt|zip';
 		
 		$this->load->library('upload', $config);
 		
-		if (  $this->upload->do_upload('file')){
+		if (  $this->upload->do_upload('document')){
 			
 			$_ud = $this->upload->data();
 			
-			$_p['file'] = $_ud['file_name'];
-		} 
-		
-		//else dump($this->upload->display_errors());
-		//*
-		if(!$_w["info_id"]) $_w["info_id"] = $this->info_m->__insert("mdl_info", $_p);
-		
-		else $this->info_m->__update("mdl_info", $_p, $_w);
-		
-		// role set
-		$this->info_m->__delete("mdl_info_role", array("info_id"=>$_w["info_id"]));
-		
-		foreach($_r['company_ids'] as $_rc){
+			$path_csv = $_ud['full_path'];
 			
-			foreach($_r['jabatan_ids'] as $_rj){
-				
-				$this->info_m->__insert("mdl_info_role", array("info_id"=>$_w["info_id"], "company_id"=>$_rc, "jabatan_id"=>$_rj));
-			}
+		} else {
+			dump($_FILES);
+			die($this->upload->display_errors());
 		}
 		
-		/**/
-		//if($_w["info_id"] > 0) echo "insert query";
+		// https://www.sitepoint.com/community/t/spliting-a-75mb-csv-into-managable-file-sizes/70486/15
+		// https://www.codeigniter.com/userguide2/database/active_record.html#insert_batch
 		
-		//else echo "update query";
-		/*
-		dump($_POST, "POST");
-		dump($_w["info_id"] > 0, 'logic info_id');
-		dump($_w, '_w');
-		dump($_p, '_p');		
-		dump($this->info_m->__last_query(), 'query');
-		/**/
-		redirect(base_url()."admin/informasi");
+		$header_first_line = @if_empty($this->input->post('header'),true);
+		
+		$csv = new SplFileObject($path_csv);
+		
+		$csv->setFlags(SplFileObject::READ_CSV);
+		
+		$start = $header_first_line ? 1 : 0;
+		
+		$batch = 200; // maximal 200 data per insert 
+		
+		$counter = 1;
+		
+		$header_counter = array();
+		
+		$this->load->helper("attendance");
+		$this->load->helper("cuti/cuti");
+		
+		while (!$csv->eof()) {
+		
+			$data = array();
+			
+			foreach(new LimitIterator($csv, $start, $batch) as $num =>$_l) {
+				
+				if(!is_array($_l) || $_l[0] == '') break;
+				
+				$_chead = array(
+					"nip"		=> $_l[0],
+					"date_in"	=> bbdate($_l[2]), 
+					"time_in"	=> time_attendance($_l[3]), 
+					"time_out"	=> time_attendance($_l[4]), 
+					"status"	=> strtoupper($_l[5])
+				);
+			
+				$data[$num] = $_chead;
+			}
+			
+			if(count($data)) $this->att_m->insert_batch($data);
+			
+			unset($data);
+			
+			$start += $batch;
+		
+			$counter++;
+		}
+		
+		redirect(base_url()."admin/attendance");
+		
+	}
+	/*
+		table perusahaan
+	*/
+	function revisi(){
+
+		$data = array('title'=>'Revisi Absensi');
+		
+		$data['include_script'] = inc_script(
+		
+			array(
+			
+			#	"includes/datepicker/bootstrap-datepicker.js",
+				
+			#	"includes/datepicker/locales/bootstrap-datepicker.id.js",
+			
+				"includes/datatables/jquery.dataTables.min.js",
+		
+				"includes/datatables/jquery.dataTables.min.css",
+		
+				"cms/plugin/attendance/js/admin_revisi.js",
+			)
+		); 
+
+		$_w = array(
+			'YEAR(date_from)'	=> @if_empty($_GET['year']) ? (int)$this->input->get('year') : (int)date('Y'),
+			'MONTH(date_from)'=> @if_empty($_GET['month']) ? (int)$this->input->get('month') : (int)date('n'),
+			'closed_status'		=> @if_empty($_GET['closed_status']) ? $this->input->get('closed_status') : 0,
+			'is_delete'			=> 0
+		);
+
+		if(isset($_GET['rev_type_id']) && $_GET['rev_type_id'] != '0') 	$_w['rev_type_id'] = $this->input->get('rev_type_id');
+		 
+
+		$this->load->config('attendance');
+
+		$rule_upload = $this->config->item('revisi_uploads');
+
+		$data['upload_path'] = $rule_upload['upload_path'];
+
+		$data['month']	= @if_empty($this->input->get('month'), date('n'));
+
+		$data['year']	= @if_empty($this->input->get('year'), date('Y'));
+
+		$_year = $this->att_m->__select('mdl_attendance_revisi', "MIN(YEAR(date_from)) min", array(), false);
+		
+		$data["min_year"] = @if_empty($_year->min, date("Y"));
+		
+		$data["max_year"] = date("Y") + 1;
+
+		$data['revs'] = $this->att_m->admin_get_list_revisi($_w);
+
+		$this->masterpage->addContentPage('admin_revisi_table', 'contentmain', $data);
+
+		$this->masterpage->show( );
+	}
+
+	function revisi_form($_rev_id){
+
+		$data['include_script'] = inc_script(
+		
+			array(
+			
+				"cms/plugin/attendance/js/admin_revisi_form.js",
+			)
+		); 
+
+		$data['title'] = "Form Revisi Admin";
+
+		$_w = array('rev_id'=>$_rev_id);
+
+		$rule_upload = $this->config->item('revisi_uploads');
+
+		$data['upload_path'] = $rule_upload['upload_path'];
+
+		$data['rev'] = $this->att_m->admin_get_list_revisi($_w);
+
+		$this->masterpage->addContentPage('admin_revisi_form', 'contentmain', $data);
+
+		$this->masterpage->show( );
+	}
+
+	function revisi_simpan(){
+
+		$this->load->helper('attendance');
+
+		$_w['rev_id'] = $this->input->post('rev_id');
+
+		$data = array(
+			'closed_date' 	=> implode(' ', get_now_time()), 
+			'closed_usr_id' => get_session('user_id'),
+			'closed_status' => $this->input->post('closed_status'),
+			'closed_msg'	=> $this->input->post('closed_msg')
+		);
+
+		$this->att_m->__update('mdl_attendance_revisi', $data, $_w);
+
+		redirect(base_url()."attendance/admin/revisi");
+	}
+
+	function load_attendance_list($_usr_id, $_year, $_month){
+		
+		$_w = array(
+			'usr_id' => $_usr_id,
+			'YEAR(date_in)' => (int)$_year,
+			'MONTH(date_in)'=> (int)$_month
+		);
+
+		$atts = $this->att_m->__select('mdl_attendance', '*', $_w);
+		debug($atts, '$atts');
+		$_attendance = array();
+		
+		foreach($atts as $_var=>$_) $_attendance[$_->date_in] = array('att_id'=>$_->att_id,'status'=>$_->status,'time_in'=>$_->time_in, 'time_out'=>$_->time_out);
+		debug($_attendance, '$_attendance');
+		$this->load->helper('calender');
+
+		$status = json_decode(mdl_opt('bb_opt_tipe_revisi'), true);
+
+		echo build_html_calendar_vertical_admin($_attendance, $_year, $_month, $status);
+
+	}
+
+	function revisi_simpan_ubah_status(){
+
+		$_data = array(
+			'date_in' 	=> $this->input->post('date_in'),
+			'rev_id'	=> $this->input->post('rev_id'),
+			'status'	=> $this->input->post('status'),
+			'usr_id'	=> $this->input->post('usr_id'),
+			'time_in'	=> '00:00:03',
+			'lat_in'	=> 0,
+			'lon_in'	=> 0
+		);
+
+		$_att_id = $this->input->post('att_id');
+
+		if($_att_id) $a = $this->att_m->__update('mdl_attendance', $_data, array('att_id'=>$_att_id));
+		
+		else $a = $this->att_m->__insert('mdl_attendance', $_data);
+		
+		if($a) $msg = array('status'=>'success', 'message'=>'Berhasil Mengubah Absensi');
+
+		else $msg = array('status'=>'error', 'message'=>'Gagal Mengubah Absensi');
+
+		echo json_encode($msg);
 	}
 	
-	function delete($info_id = null){
-		
-		if($info_id){
-			
-			$this->info_m->__delete("mdl_info", array("info_id"=>$info_id));
-		}
-		
-		redirect(base_url()."admin/informasi");
-	}
 }

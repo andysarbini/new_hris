@@ -105,7 +105,7 @@
 		
 		<div class="footer">
 			<ul class="list-inline">
-				<li>Hak Cipta &copy; 2018 PT Bluebird TBK</li>
+				<li>Hak Cipta &copy; 2019 PT Inconis Nusa Jaya</li>
 				<li class="hidden"><a href="#">Tentang</a></li>
 				<li class="hidden"><a href="#">Syarat &amp; Ketentuan</a></li>
 				<li class="hidden"><a href="#">Kebijakan</a></li>
